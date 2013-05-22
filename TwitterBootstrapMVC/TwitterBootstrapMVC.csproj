@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B8962907-267A-4010-9606-DD3440055E0A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TwitterBootstrapMVC</RootNamespace>
+    <AssemblyName>TwitterBootstrapMVC</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="T4MVCExtensions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\T4MVCExtensions.3.5.0\lib\net40\T4MVCExtensions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BootstrapMethods\Bootstrap.ActionLinkButton.cs" />
+    <Compile Include="BootstrapMethods\Bootstrap.Common.cs" />
+    <Compile Include="BootstrapMethods\Bootstrap.cs" />
+    <Compile Include="BootstrapHtmlExtension.cs" />
+    <Compile Include="ControlInterfaces\IBootstrapListBox.cs" />
+    <Compile Include="ControlInterfaces\IBootstrapInputListFromEnum.cs" />
+    <Compile Include="ControlInterfaces\IBootstrapButton.cs" />
+    <Compile Include="ControlInterfaces\IBootstrapCheckBox.cs" />
+    <Compile Include="ControlInterfaces\IBootstrapDisplayText.cs" />
+    <Compile Include="ControlInterfaces\IBootstrapDropDownList.cs" />
+    <Compile Include="ControlInterfaces\IBootstrapFile.cs" />
+    <Compile Include="ControlInterfaces\IBootstrapInputList.cs" />
+    <Compile Include="ControlInterfaces\IBootstrapLabel.cs" />
+    <Compile Include="ControlInterfaces\IBootstrapRadioButton.cs" />
+    <Compile Include="ControlInterfaces\IBootstrapRadioButtonTrueFalse.cs" />
+    <Compile Include="ControlInterfaces\IBootstrapTextArea.cs" />
+    <Compile Include="ControlInterfaces\IBootstrapTextBox.cs" />
+    <Compile Include="ControlModels\BootstrapButtonModel.cs" />
+    <Compile Include="ControlModels\BootstrapControlGroupCustomModel.cs" />
+    <Compile Include="ControlModels\BootstrapDisplayTextModel.cs" />
+    <Compile Include="ControlModels\BootstrapFileModel.cs" />
+    <Compile Include="ControlModels\BootstrapInputListFromEnumModel.cs" />
+    <Compile Include="ControlModels\BootstrapInputListModel.cs" />
+    <Compile Include="ControlModels\BootstrapCheckBoxModel.cs" />
+    <Compile Include="ControlModels\BootstrapRadioButtonTrueFalseModel.cs" />
+    <Compile Include="Controls\BootstrapControlGroup.cs" />
+    <Compile Include="ControlModels\BootstrapSelectElementModel.cs" />
+    <Compile Include="ControlModels\BootstrapLabelModel.cs" />
+    <Compile Include="ControlModels\BootstrapRadioButtonModel.cs" />
+    <Compile Include="ControlModels\BootstrapTextAreaModel.cs" />
+    <Compile Include="ControlModels\BootstrapTextBoxModel.cs" />
+    <Compile Include="Controls\BootstrapActionLinkButton.cs" />
+    <Compile Include="Controls\BootstrapBeginButtonGroup.cs" />
+    <Compile Include="Controls\BootstrapControlGroupCustom.cs" />
+    <Compile Include="Controls\BootstrapControlGroupDisplayText.cs" />
+    <Compile Include="Controls\BootstrapControlGroupFile.cs" />
+    <Compile Include="Controls\BootstrapControlGroupInputListFromEnum.cs" />
+    <Compile Include="Controls\BootstrapControlGroupInputListFromEnumLabeled.cs" />
+    <Compile Include="Controls\BootstrapControlGroupRadioButtonTrueFalse.cs" />
+    <Compile Include="Controls\BootstrapFile.cs" />
+    <Compile Include="Controls\BootstrapIcon.cs" />
+    <Compile Include="Controls\BootstrapInputList.cs" />
+    <Compile Include="Controls\BootstrapContainer.cs" />
+    <Compile Include="Controls\BootstrapControlGroupInputList.cs" />
+    <Compile Include="Controls\BootstrapControlGroupInputListLabeled.cs" />
+    <Compile Include="Controls\BootstrapControlGroupPassword.cs" />
+    <Compile Include="Controls\BootstrapDropDownMenu.cs" />
+    <Compile Include="Controls\BootstrapButton.cs" />
+    <Compile Include="Controls\BootstrapBeginDiv.cs" />
+    <Compile Include="Controls\BootstrapCheckBox.cs" />
+    <Compile Include="Controls\BootstrapDropDownMenuItem.cs" />
+    <Compile Include="Controls\BootstrapHelpText.cs" />
+    <Compile Include="BootstrapMethods\Bootstrap.ControlGroup.cs" />
+    <Compile Include="Controls\BootstrapControlGroupCheckBox.cs" />
+    <Compile Include="Controls\BootstrapControlGroupDropDownList.cs" />
+    <Compile Include="Controls\BootstrapControlGroupLabeled.cs" />
+    <Compile Include="Controls\BootstrapControlGroupRadioButton.cs" />
+    <Compile Include="Controls\BootstrapControlGroupTextArea.cs" />
+    <Compile Include="Controls\BootstrapControlGroupTextBox.cs" />
+    <Compile Include="Controls\BootstrapInputLabeled.cs" />
+    <Compile Include="Controls\BootstrapInputListFromEnum.cs" />
+    <Compile Include="Controls\BootstrapInputListFromEnumLabeled.cs" />
+    <Compile Include="Controls\BootstrapInputListLabeled.cs" />
+    <Compile Include="Controls\BootstrapLabel.cs" />
+    <Compile Include="Controls\BootstrapPassword.cs" />
+    <Compile Include="Controls\BootstrapRadioButton.cs" />
+    <Compile Include="Controls\BootstrapRadioButtonTrueFalse.cs" />
+    <Compile Include="Controls\BootstrapTextArea.cs" />
+    <Compile Include="Controls\BootstrapTextBox.cs" />
+    <Compile Include="Controls\BootstrapDropDownList.cs" />
+    <Compile Include="Controls\BootstrapListBox.cs" />
+    <Compile Include="Controls\BootstrapControlGroupListBox.cs" />
+    <Compile Include="Infrastructure\BootstrapHelper.cs" />
+    <Compile Include="Infrastructure\ConfigurationClasses\PopoverConfiguration.cs" />
+    <Compile Include="Infrastructure\ConfigurationClasses\TooltipConfiguration.cs" />
+    <Compile Include="Infrastructure\DisposableHelper.cs" />
+    <Compile Include="Infrastructure\Enums\BootstrapInputType.cs" />
+    <Compile Include="Infrastructure\Enums\ButtonGroupType.cs" />
+    <Compile Include="Infrastructure\Enums\ButtonSize.cs" />
+    <Compile Include="Infrastructure\Enums\ButtonStyle.cs" />
+    <Compile Include="Infrastructure\Enums\Icons.cs" />
+    <Compile Include="Infrastructure\Enums\HelpTextStyle.cs" />
+    <Compile Include="Infrastructure\Enums\TextBoxSize.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegularHtmlExtensions\HtmlExtensions.cs" />
+    <Compile Include="Renderers\Renderer.ControlGroup.Custom.cs" />
+    <Compile Include="Renderers\Renderer.ControlGroup.File.cs" />
+    <Compile Include="Renderers\Renderer.ControlGroup.InputListFromEnum.cs" />
+    <Compile Include="Renderers\Renderer.File.cs" />
+    <Compile Include="Renderers\Renderer.DisplayText.cs" />
+    <Compile Include="Renderers\Renderer.ControlGroup.DisplayText.cs" />
+    <Compile Include="Renderers\Renderer.CheckBox.cs" />
+    <Compile Include="Renderers\Renderer.ControlGroup.CheckBox.cs" />
+    <Compile Include="Renderers\Renderer.ControlGroup.SelectElement.cs" />
+    <Compile Include="Renderers\Renderer.ControlGroup.InputList.cs" />
+    <Compile Include="Renderers\Renderer.ControlGroup.Password.cs" />
+    <Compile Include="Renderers\Renderer.ControlGroup.RadioButton.cs" />
+    <Compile Include="Renderers\Renderer.ControlGroup.TextArea.cs" />
+    <Compile Include="Renderers\Renderer.ControlGroup.TextBox.cs" />
+    <Compile Include="Renderers\Renderer.SelectElement.cs" />
+    <Compile Include="Renderers\Renderer.InputListContainer.cs" />
+    <Compile Include="Renderers\Renderer.InputListFromEnum.cs" />
+    <Compile Include="Renderers\Renderer.InputListItem.cs" />
+    <Compile Include="Renderers\Renderer.Label.cs" />
+    <Compile Include="Renderers\Renderer.Password.cs" />
+    <Compile Include="Renderers\Renderer.RadioButton.cs" />
+    <Compile Include="Renderers\Renderer.TextArea.cs" />
+    <Compile Include="Renderers\Renderer.TextBox.cs" />
+    <Compile Include="Renderers\Renderer.CheckBoxCustom.cs" />
+    <Compile Include="Renderers\Renderer.RadioButtonTrueFalse.cs" />
+    <Compile Include="Renderers\Renderer.ControlGroup.RadioButtonTrueFalse.cs" />
+    <Compile Include="TypeExtensions\TypeExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Compile Include="Renderers\Renderer.InputList.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
