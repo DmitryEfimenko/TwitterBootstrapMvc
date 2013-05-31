@@ -91,11 +91,11 @@ namespace TwitterBootstrapMVC.Controls
         {
             if (isActive)
             {
-                base.textWriter.Write(string.Format(@"<li class=""active""><a data-toggle=""tab"" href=""#{1}"">#{0}</a></li>", label, href));
+                base.textWriter.Write(string.Format(@"<li class=""active""><a data-toggle=""tab"" href=""#{1}"">{0}</a></li>", label, href));
             }
             else
             {
-                base.textWriter.Write(string.Format(@"<li><a data-toggle=""tab"" href=""#{1}"">#{0}</a></li>", label, href));
+                base.textWriter.Write(string.Format(@"<li><a data-toggle=""tab"" href=""#{1}"">{0}</a></li>", label, href));
             }
         }
     }
