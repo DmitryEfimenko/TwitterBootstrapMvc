@@ -6,6 +6,7 @@ using System.Text;
 using System.Web.Mvc;
 using TwitterBootstrapMVC.ControlInterfaces;
 using TwitterBootstrapMVC.ControlModels;
+using TwitterBootstrapMVC.Infrastructure;
 using TwitterBootstrapMVC.Infrastructure.Enums;
 using TwitterBootstrapMVC.Renderers;
 using TwitterBootstrapMVC.TypeExtensions;
@@ -71,6 +72,12 @@ namespace TwitterBootstrapMVC.Controls
         public IBootstrapRadioButtonTrueFalse Tooltip(string title)
         {
             this._model.tooltipConfiguration = new TooltipConfiguration(title);
+            return this;
+        }
+
+        public IBootstrapRadioButtonTrueFalse HelpText()
+        {
+            this._model.helpText = new BootstrapHelpText(BootstrapHelper.GetHelpTextFromMetadata(_model.metadata), HelpTextStyle.Inline);
             return this;
         }
 

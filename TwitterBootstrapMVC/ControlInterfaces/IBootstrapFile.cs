@@ -11,6 +11,7 @@ namespace TwitterBootstrapMVC.ControlInterfaces
     {
         IBootstrapFile Id(string id);
         IBootstrapFile HtmlAttributes(object htmlAttributes);
+        IBootstrapFile HelpText();
         IBootstrapFile HelpText(string text);
         IBootstrapFile HelpText(string text, HelpTextStyle style);
         IBootstrapFile Tooltip(TooltipConfiguration configuration);

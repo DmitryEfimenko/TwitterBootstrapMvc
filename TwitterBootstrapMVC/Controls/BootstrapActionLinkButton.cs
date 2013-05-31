@@ -47,17 +47,6 @@ namespace TwitterBootstrapMVC.Controls
             this._model.style = ButtonStyle.Default;
         }
 
-        public BootstrapActionLinkButton(HtmlHelper html, string linkText, string actionName, object routeValues)
-            : base("")
-        {
-            this.html = html;
-            this._model.text = linkText;
-            this._actionName = actionName;
-            this._routeValues = HtmlHelper.AnonymousObjectToHtmlAttributes(routeValues);
-            this._model.size = ButtonSize.Default;
-            this._model.style = ButtonStyle.Default;
-        }
-
         public BootstrapActionLinkButton(HtmlHelper html, string linkText, string actionName, string controllerName)
             : base("")
         {
@@ -69,45 +58,64 @@ namespace TwitterBootstrapMVC.Controls
             this._model.style = ButtonStyle.Default;
         }
 
-        public BootstrapActionLinkButton(HtmlHelper html, string linkText, string actionName, string controllerName, object routeValues)
-            : base("")
+        public BootstrapActionLinkButton Id(string id)
         {
-            this.html = html;
-            this._model.text = linkText;
-            this._actionName = actionName;
-            this._controllerName = controllerName;
-            this._routeValues = HtmlHelper.AnonymousObjectToHtmlAttributes(routeValues);
-            this._model.size = ButtonSize.Default;
-            this._model.style = ButtonStyle.Default;
+            this._model.id = id;
+            return this;
         }
 
-        public BootstrapActionLinkButton(HtmlHelper html, string linkText, string routeName, string protocol, string hostName, string fragment, RouteValueDictionary routeValues)
-            : base("")
+        public BootstrapActionLinkButton Protocol(string protocol)
         {
-            this.html = html;
-            this._model.text = linkText;
+            this._protocol = protocol;
+            return this;
+        }
+
+        public BootstrapActionLinkButton HostName(string hostName)
+        {
+            this._hostName = hostName;
+            return this;
+        }
+
+        public BootstrapActionLinkButton Fragment(string fragment)
+        {
+            this._fragment = fragment;
+            return this;
+        }
+
+        public BootstrapActionLinkButton RouteName(string routeName)
+        {
             this._routeName = routeName;
-            this._protocol = protocol;
-            this._hostName = hostName;
-            this._fragment = fragment;
-            this._routeValues = routeValues;
-            this._model.size = ButtonSize.Default;
-            this._model.style = ButtonStyle.Default;
+            return this;
         }
 
-        public BootstrapActionLinkButton(HtmlHelper html, string linkText, string actionName, string controllerName, string protocol, string hostName, string fragment, object routeValues)
-            : base("")
+        public BootstrapActionLinkButton HtmlAttributes(object htmlAttributes)
         {
-            this.html = html;
-            this._model.text = linkText;
-            this._actionName = actionName;
-            this._controllerName = controllerName;
-            this._protocol = protocol;
-            this._hostName = hostName;
-            this._fragment = fragment;
+            this._model.htmlAttributes = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
+            return this;
+        }
+
+        public BootstrapActionLinkButton RouteValues(object routeValues)
+        {
             this._routeValues = HtmlHelper.AnonymousObjectToHtmlAttributes(routeValues);
-            this._model.size = ButtonSize.Default;
-            this._model.style = ButtonStyle.Default;
+            return this;
+        }
+
+        public BootstrapActionLinkButton RouteValues(RouteValueDictionary routeValues)
+        {
+            this._routeValues = routeValues;
+            return this;
+        }
+
+        public BootstrapActionLinkButton Disabled()
+        {
+            this._model.disabled = true;
+            return this;
+        }
+
+        public BootstrapActionLinkButton DropDownToggle()
+        {
+            this._model.isDropDownToggle = true;
+            return this;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

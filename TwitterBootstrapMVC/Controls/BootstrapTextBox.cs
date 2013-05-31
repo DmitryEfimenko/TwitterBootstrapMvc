@@ -99,6 +99,12 @@ namespace TwitterBootstrapMVC.Controls
             return (T)this;
         }
 
+        public T HelpText()
+        {
+            this._model.helpText = new BootstrapHelpText(BootstrapHelper.GetHelpTextFromMetadata(_model.metadata), HelpTextStyle.Inline);
+            return (T)this;
+        }
+
         public T HelpText(string text)
         {
             this._model.helpText = new BootstrapHelpText(text, HelpTextStyle.Inline);

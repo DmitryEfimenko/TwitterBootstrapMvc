@@ -20,6 +20,8 @@ namespace TwitterBootstrapMVC.ControlInterfaces
         IBootstrapDropDownList Prepend(BootstrapButton button);
         IBootstrapDropDownList Append(string appendString);
         IBootstrapDropDownList Append(BootstrapButton button);
+        IBootstrapDropDownList HelpText();
+        IBootstrapDropDownList HelpText(string text);
         IBootstrapDropDownList HelpText(string text, HelpTextStyle style);
         IBootstrapDropDownList Size(InputSize size);
         IBootstrapDropDownList Tooltip(TooltipConfiguration configuration);

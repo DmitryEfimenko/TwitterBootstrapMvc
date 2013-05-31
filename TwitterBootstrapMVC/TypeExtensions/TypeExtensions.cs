@@ -130,6 +130,21 @@ namespace TwitterBootstrapMVC.TypeExtensions
             return result;
         }
 
+        public static IDictionary<string, object> ObjectToHtmlAttributesDictionary(this object htmlAttributes)
+        {
+            IDictionary<string, object> dictionary = null;
+            if (htmlAttributes == null)
+            {
+                return new Dictionary<string, object>();
+            }
+            dictionary = htmlAttributes as IDictionary<string, object>;
+            if (dictionary == null)
+            {
+                dictionary = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
+            }
+            return dictionary;
+        }
+
         /// <summary>
         /// Adds Css style to a TagBuilder element
         /// </summary>

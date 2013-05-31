@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using TwitterBootstrapMVC.ControlInterfaces;
 using TwitterBootstrapMVC.ControlModels;
+using TwitterBootstrapMVC.Infrastructure;
 using TwitterBootstrapMVC.Infrastructure.Enums;
 using TwitterBootstrapMVC.Renderers;
 using TwitterBootstrapMVC.TypeExtensions;
@@ -68,6 +69,12 @@ namespace TwitterBootstrapMVC.Controls
         public IBootstrapDropDownList Append(BootstrapButton button)
         {
             this._model.appendButtons.Add(button);
+            return this;
+        }
+
+        public IBootstrapDropDownList HelpText()
+        {
+            this._model.helpText = new BootstrapHelpText(BootstrapHelper.GetHelpTextFromMetadata(_model.metadata), HelpTextStyle.Inline);
             return this;
         }
 

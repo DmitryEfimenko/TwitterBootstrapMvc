@@ -50,5 +50,12 @@ namespace TwitterBootstrapMVC.Infrastructure
             if (!string.IsNullOrEmpty(metadata.PropertyName)) return metadata.PropertyName.SplitByUpperCase();
             return string.Empty;
         }
+
+        public static string GetHelpTextFromMetadata(ModelMetadata metadata)
+        {
+            if (metadata == null) return string.Empty;
+            if (!string.IsNullOrEmpty(metadata.Description)) return metadata.Description;
+            return string.Empty;
+        }
     }
 }

@@ -17,6 +17,8 @@ namespace TwitterBootstrapMVC.ControlInterfaces
         IBootstrapRadioButtonTrueFalse InputLabelsText(string trueText, string falseText);
         IBootstrapRadioButtonTrueFalse Tooltip(TooltipConfiguration configuration);
         IBootstrapRadioButtonTrueFalse Tooltip(string text);
+        IBootstrapRadioButtonTrueFalse HelpText();
+        IBootstrapRadioButtonTrueFalse HelpText(string text);
         IBootstrapRadioButtonTrueFalse HelpText(string text, HelpTextStyle style);
         IBootstrapRadioButtonTrueFalse ShowValidationMessage(bool displayValidationMessage);
         IBootstrapRadioButtonTrueFalse ShowValidationMessage(bool displayValidationMessage, HelpTextStyle validationMessageStyle);

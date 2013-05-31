@@ -23,6 +23,7 @@ namespace TwitterBootstrapMVC.ControlInterfaces
         T Prepend(BootstrapButton button);
         T Append(string appendString);
         T Append(BootstrapButton button);
+        T HelpText();
         T HelpText(string text);
         T HelpText(string text, HelpTextStyle style);
         T Size(InputSize size);

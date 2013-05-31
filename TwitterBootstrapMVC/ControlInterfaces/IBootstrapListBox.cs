@@ -14,6 +14,8 @@ namespace TwitterBootstrapMVC.ControlInterfaces
     {
         IBootstrapListBox Id(string id);
         IBootstrapListBox HtmlAttributes(object htmlAttributes);
+        IBootstrapListBox HelpText();
+        IBootstrapListBox HelpText(string text);
         IBootstrapListBox HelpText(string text, HelpTextStyle style);
         IBootstrapListBox Size(InputSize size);
         IBootstrapListBox Tooltip(TooltipConfiguration configuration);
