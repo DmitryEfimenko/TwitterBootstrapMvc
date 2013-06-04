@@ -39,5 +39,15 @@ namespace TwitterBootstrapMVC.Controls
         {
             return new BootstrapActionLink(htmlHelper, linkText, actionName, controllerName).WrapInto("li");
         }
+
+        public void Divider()
+        {
+            base.textWriter.Write(@"<li class=""divider""></li>");
+        }
+
+        public void Header(string header)
+        {
+            base.textWriter.Write(string.Format(@"<li class=""nav-header"">{0}</li>", header));
+        }
     }
 }

@@ -27,6 +27,10 @@ namespace TwitterBootstrapMVC.Controls
         private bool disabled;
         private bool isDropDownToggle;
         private RouteValueDictionary routeValues;
+        private Icons iconPrepend;
+        private Icons iconAppend;
+        private bool iconPrependIsWhite;
+        private bool iconAppendIsWhite;
         private string wrapTag;
 
         public BootstrapActionLink(HtmlHelper html, string linkText, ActionResult result)
@@ -111,6 +115,32 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
+        public BootstrapActionLink IconPrepend(Icons icon)
+        {
+            this.iconPrepend = icon;
+            return this;
+        }
+
+        public BootstrapActionLink IconPrepend(Icons icon, bool isWhite)
+        {
+            this.iconPrepend = icon;
+            this.iconPrependIsWhite = isWhite;
+            return this;
+        }
+
+        public BootstrapActionLink IconAppend(Icons icon)
+        {
+            this.iconAppend = icon;
+            return this;
+        }
+
+        public BootstrapActionLink IconAppend(Icons icon, bool isWhite)
+        {
+            this.iconAppend = icon;
+            this.iconAppendIsWhite = isWhite;
+            return this;
+        }
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public BootstrapActionLink WrapInto(string tag)
         {
@@ -132,10 +162,22 @@ namespace TwitterBootstrapMVC.Controls
             if (disabled) mergedHtmlAttributes.AddOrMergeCssClass("class", "disabled");
 
             var input = string.Empty;
-            
+            string iPrependString = string.Empty;
+            string iAppendString = string.Empty;
+
+            if (this.iconPrepend != Icons._not_set || this.iconAppend != Icons._not_set)
+            {
+                if (this.iconPrepend != Icons._not_set) iPrependString = new BootstrapIcon(this.iconPrepend, this.iconPrependIsWhite).ToHtmlString() + " ";
+                if (this.iconAppend != Icons._not_set) iAppendString = " " + new BootstrapIcon(this.iconAppend, this.iconAppendIsWhite).ToHtmlString();
+
+                linkText = "{0}" + linkText + "{1}";
+            }
+
             input = (result == null)
                 ? html.ActionLink(linkText, actionName, controllerName, protocol, hostName, fragment, routeValues, mergedHtmlAttributes).ToHtmlString()
                 : html.ActionLink(linkText, result, mergedHtmlAttributes, protocol, hostName, fragment).ToHtmlString();
+
+            input = string.Format(input, iPrependString, iAppendString);
 
             if (!string.IsNullOrEmpty(this.wrapTag)) input = string.Format("<{0}>{1}</{0}>", this.wrapTag, input);
 

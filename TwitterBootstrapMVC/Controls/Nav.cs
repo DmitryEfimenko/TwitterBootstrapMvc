@@ -26,7 +26,7 @@ namespace TwitterBootstrapMVC
                     EnsureClass("bav-pills");
                     break;
                 case NavType.List:
-                    EnsureClass("nav-tabs");
+                    EnsureClass("nav-list");
                     break;
                 default:
                     break;
