@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
@@ -28,6 +29,11 @@ namespace TwitterBootstrapMVC.Controls
         public BootstrapActionLink ActionLink(string linkText, ActionResult result)
         {
             return new BootstrapActionLink(htmlHelper, linkText, result).WrapInto("li");
+        }
+
+        public BootstrapActionLink ActionLink(string linkText, Task<ActionResult> taskResult)
+        {
+            return new BootstrapActionLink(htmlHelper, linkText, taskResult).WrapInto("li");
         }
 
         public BootstrapActionLink ActionLink(string linkText, string actionName)
