@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
+using TwitterBootstrapMVC.Infrastructure.Enums;
 using TwitterBootstrapMVC.TypeExtensions;
 
 namespace TwitterBootstrapMVC.Controls
@@ -14,7 +17,10 @@ namespace TwitterBootstrapMVC.Controls
     public class BootstrapActionLink : IHtmlString
     {
         private HtmlHelper html;
+        private AjaxHelper ajax;
         private ActionResult result;
+        private Task<ActionResult> taskResult;
+        private AjaxOptions ajaxOptions;
         private string linkText;
         private string id;
         private string routeName;
@@ -32,12 +38,22 @@ namespace TwitterBootstrapMVC.Controls
         private bool iconPrependIsWhite;
         private bool iconAppendIsWhite;
         private string wrapTag;
+        private ActionTypePassed actionTypePassed;
 
         public BootstrapActionLink(HtmlHelper html, string linkText, ActionResult result)
         {
             this.html = html;
             this.linkText = linkText;
             this.result = result;
+            this.actionTypePassed = ActionTypePassed.HtmlActionResult;
+        }
+
+        public BootstrapActionLink(HtmlHelper html, string linkText, Task<ActionResult> taskResult)
+        {
+            this.html = html;
+            this.linkText = linkText;
+            this.taskResult = taskResult;
+            this.actionTypePassed = ActionTypePassed.HtmlTaskResult;
         }
 
         public BootstrapActionLink(HtmlHelper html, string linkText, string actionName)
@@ -45,6 +61,7 @@ namespace TwitterBootstrapMVC.Controls
             this.html = html;
             this.linkText = linkText;
             this.actionName = actionName;
+            this.actionTypePassed = ActionTypePassed.HtmlRegular;
         }
 
         public BootstrapActionLink(HtmlHelper html, string linkText, string actionName, string controllerName)
@@ -53,6 +70,44 @@ namespace TwitterBootstrapMVC.Controls
             this.linkText = linkText;
             this.actionName = actionName;
             this.controllerName = controllerName;
+            this.actionTypePassed = ActionTypePassed.HtmlRegular;
+        }
+
+        public BootstrapActionLink(AjaxHelper ajax, string linkText, ActionResult result, AjaxOptions ajaxOptions)
+        {
+            this.ajax = ajax;
+            this.linkText = linkText;
+            this.result = result;
+            this.ajaxOptions = ajaxOptions;
+            this.actionTypePassed = ActionTypePassed.AjaxActionResult;
+        }
+
+        public BootstrapActionLink(AjaxHelper ajax, string linkText, Task<ActionResult> taskResult, AjaxOptions ajaxOptions)
+        {
+            this.ajax = ajax;
+            this.linkText = linkText;
+            this.taskResult = taskResult;
+            this.ajaxOptions = ajaxOptions;
+            this.actionTypePassed = ActionTypePassed.AjaxTaskResult;
+        }
+
+        public BootstrapActionLink(AjaxHelper ajax, string linkText, string actionName, AjaxOptions ajaxOptions)
+        {
+            this.ajax = ajax;
+            this.linkText = linkText;
+            this.actionName = actionName;
+            this.ajaxOptions = ajaxOptions;
+            this.actionTypePassed = ActionTypePassed.AjaxRegular;
+        }
+
+        public BootstrapActionLink(AjaxHelper ajax, string linkText, string actionName, string controllerName, AjaxOptions ajaxOptions)
+        {
+            this.ajax = ajax;
+            this.linkText = linkText;
+            this.actionName = actionName;
+            this.controllerName = controllerName;
+            this.ajaxOptions = ajaxOptions;
+            this.actionTypePassed = ActionTypePassed.AjaxRegular;
         }
 
         public BootstrapActionLink Id(string id)
@@ -173,9 +228,29 @@ namespace TwitterBootstrapMVC.Controls
                 linkText = "{0}" + linkText + "{1}";
             }
 
-            input = (result == null)
-                ? html.ActionLink(linkText, actionName, controllerName, protocol, hostName, fragment, routeValues, mergedHtmlAttributes).ToHtmlString()
-                : html.ActionLink(linkText, result, mergedHtmlAttributes, protocol, hostName, fragment).ToHtmlString();
+            switch (this.actionTypePassed)
+            {
+                case ActionTypePassed.HtmlRegular:
+                    input = html.ActionLink(linkText, actionName, controllerName, protocol, hostName, fragment, routeValues, mergedHtmlAttributes).ToHtmlString();
+                    break;
+                case ActionTypePassed.HtmlActionResult:
+                    input = html.ActionLink(linkText, result, mergedHtmlAttributes, protocol, hostName, fragment).ToHtmlString();
+                    break;
+                case ActionTypePassed.HtmlTaskResult:
+                    input = html.ActionLink(linkText, taskResult, mergedHtmlAttributes, protocol, hostName, fragment).ToHtmlString();
+                    break;
+                case ActionTypePassed.AjaxRegular:
+                    input = ajax.ActionLink(linkText, actionName, controllerName, protocol, hostName, fragment, routeValues, ajaxOptions, mergedHtmlAttributes).ToHtmlString();
+                    break;
+                case ActionTypePassed.AjaxActionResult:
+                    input = ajax.ActionLink(linkText, result, ajaxOptions, mergedHtmlAttributes).ToHtmlString();
+                    break;
+                case ActionTypePassed.AjaxTaskResult:
+                    input = ajax.ActionLink(linkText, taskResult, ajaxOptions, mergedHtmlAttributes).ToHtmlString();
+                    break;
+                default:
+                    break;
+            }
 
             input = string.Format(input, iPrependString, iAppendString);
 

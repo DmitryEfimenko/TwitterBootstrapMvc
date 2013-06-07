@@ -15,6 +15,7 @@ namespace TwitterBootstrapMVC.Infrastructure
 
         protected readonly TextWriter textWriter;
         protected readonly HtmlHelper<TModel> htmlHelper;
+        protected readonly AjaxHelper<TModel> ajaxHelper;
 
         // Methods
         internal BuilderBase(HtmlHelper<TModel> htmlHelper, T element)
@@ -27,6 +28,19 @@ namespace TwitterBootstrapMVC.Infrastructure
             this.element = element;
             this.htmlHelper = htmlHelper;
             this.textWriter = htmlHelper.ViewContext.Writer;
+            this.textWriter.Write(this.element.StartTag);
+        }
+
+        internal BuilderBase(AjaxHelper<TModel> ajaxHelper, T element)
+        {
+            if (element == null)
+            {
+                throw new ArgumentNullException("element");
+            }
+
+            this.element = element;
+            this.ajaxHelper = ajaxHelper;
+            this.textWriter = ajaxHelper.ViewContext.Writer;
             this.textWriter.Write(this.element.StartTag);
         }
 

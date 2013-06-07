@@ -62,5 +62,10 @@ namespace TwitterBootstrapMVC.BootstrapMethods
         {
             return new AlertBuilder<TModel>(Html, alert);
         }
+
+        public TableBuilder<TModel> Begin(Table table)
+        {
+            return new TableBuilder<TModel>(Html, table);
+        }
     }
 }

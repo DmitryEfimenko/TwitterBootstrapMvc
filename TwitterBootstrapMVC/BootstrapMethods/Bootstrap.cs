@@ -34,6 +34,7 @@ namespace TwitterBootstrapMVC.BootstrapMethods
             return new BootstrapDropDownMenu();
         }
 
+        [Obsolete("Container() is deprecated, please use Begin() instead.")]
         public BootstrapContainer Container()
         {
             return new BootstrapContainer(Html);

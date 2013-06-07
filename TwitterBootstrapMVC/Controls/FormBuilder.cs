@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
+using System.Web.Mvc.Ajax;
 using TwitterBootstrapMVC.Infrastructure;
+using TwitterBootstrapMVC.Infrastructure.Enums;
 using TwitterBootstrapMVC.TypeExtensions;
 
 namespace TwitterBootstrapMVC.Controls
@@ -15,35 +17,65 @@ namespace TwitterBootstrapMVC.Controls
         internal FormBuilder(HtmlHelper<TModel> htmlHelper, Form form)
             : base(htmlHelper, form)
         {
-            var mergedHtmlAttributes = base.element.htmlAttributes;
+            FormBuilderCommon();
+
+            switch (base.element.actionTypePassed)
+            {
+                case ActionTypePassed.HtmlRegular:
+                    htmlHelper.BeginForm(base.element.action, base.element.controller, base.element.routeValues, base.element.formMethod, base.element.htmlAttributes);
+                    break;
+                case ActionTypePassed.HtmlActionResult:
+                    htmlHelper.BeginForm(base.element.result, base.element.formMethod, base.element.htmlAttributes);
+                    break;
+                case ActionTypePassed.HtmlTaskResult:
+                    htmlHelper.BeginForm(base.element.taskResult, base.element.formMethod, base.element.htmlAttributes);
+                    break;
+            }
+        }
+
+        internal FormBuilder(AjaxHelper<TModel> ajaxHelper, Form form)
+            : base(ajaxHelper, form)
+        {
+            FormBuilderCommon();
+
+            switch (base.element.actionTypePassed)
+            {
+                case ActionTypePassed.HtmlRegular:
+                    ajaxHelper.BeginForm(base.element.action, base.element.controller, base.element.routeValues, base.element.ajaxOptions, base.element.htmlAttributes);
+                    break;
+                case ActionTypePassed.HtmlActionResult:
+                    ajaxHelper.BeginForm(base.element.result, base.element.ajaxOptions, base.element.htmlAttributes);
+                    break;
+                case ActionTypePassed.HtmlTaskResult:
+                    ajaxHelper.BeginForm(base.element.taskResult, base.element.ajaxOptions, base.element.htmlAttributes);
+                    break;
+            }
+        }
+
+        private void FormBuilderCommon()
+        {
             switch (base.element.formType)
             {
                 case FormType.Horizontal:
-                    mergedHtmlAttributes.AddOrMergeCssClass("class", "form-horizontal");
+                    base.element.htmlAttributes.AddOrMergeCssClass("class", "form-horizontal");
                     break;
                 case FormType.Vertical:
-                    mergedHtmlAttributes.AddOrMergeCssClass("class", "form-vertical");
+                    base.element.htmlAttributes.AddOrMergeCssClass("class", "form-vertical");
                     break;
                 case FormType.Inline:
-                    mergedHtmlAttributes.AddOrMergeCssClass("class", "form-inline");
+                    base.element.htmlAttributes.AddOrMergeCssClass("class", "form-inline");
                     break;
                 case FormType.Search:
-                    mergedHtmlAttributes.AddOrMergeCssClass("class", "form-search");
+                    base.element.htmlAttributes.AddOrMergeCssClass("class", "form-search");
                     break;
             }
-
-            if (base.element.result != null && string.IsNullOrEmpty(base.element.action))
-                htmlHelper.BeginForm(base.element.result, base.element.formMethod, mergedHtmlAttributes);
-            else
-                htmlHelper.BeginForm(base.element.action, base.element.controller, base.element.routeValues, base.element.formMethod, mergedHtmlAttributes);
-
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Dispose()
         {
             // Close form tag:
-            htmlHelper.EndForm();
+            base.textWriter.Write(@"</form>");
             base.Dispose();
         }
     }

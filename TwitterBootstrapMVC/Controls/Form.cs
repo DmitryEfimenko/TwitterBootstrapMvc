@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Web.Mvc.Ajax;
 using System.Web.Routing;
 using TwitterBootstrapMVC.Infrastructure;
+using TwitterBootstrapMVC.Infrastructure.Enums;
 using TwitterBootstrapMVC.TypeExtensions;
 
 namespace TwitterBootstrapMVC
@@ -22,7 +25,7 @@ namespace TwitterBootstrapMVC
         public ActionResult result;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new IDictionary<string, object> htmlAttributes;
+        public Task<ActionResult> taskResult;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RouteValueDictionary routeValues;
@@ -32,6 +35,12 @@ namespace TwitterBootstrapMVC
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FormType formType;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ActionTypePassed actionTypePassed;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AjaxOptions ajaxOptions;
 
         public Form()
             : base(null)
@@ -44,6 +53,7 @@ namespace TwitterBootstrapMVC
         {
             this.action = action;
             this.formMethod = System.Web.Mvc.FormMethod.Post;
+            actionTypePassed = ActionTypePassed.HtmlRegular;
         }
 
         public Form(string action, string controller)
@@ -52,6 +62,7 @@ namespace TwitterBootstrapMVC
             this.action = action;
             this.controller = controller;
             this.formMethod = System.Web.Mvc.FormMethod.Post;
+            actionTypePassed = ActionTypePassed.HtmlRegular;
         }
 
         public Form(ActionResult result)
@@ -59,6 +70,15 @@ namespace TwitterBootstrapMVC
         {
             this.result = result;
             this.formMethod = System.Web.Mvc.FormMethod.Post;
+            actionTypePassed = ActionTypePassed.HtmlActionResult;
+        }
+
+        public Form(Task<ActionResult> taskResult)
+            : base(null)
+        {
+            this.taskResult = taskResult;
+            this.formMethod = System.Web.Mvc.FormMethod.Post;
+            actionTypePassed = ActionTypePassed.HtmlTaskResult;
         }
 
         public Form HtmlAttributes(object htmlAttributes)
@@ -88,6 +108,12 @@ namespace TwitterBootstrapMVC
         public Form Type(FormType type)
         {
             this.formType = type;
+            return this;
+        }
+
+        public Form AjaxOptions(AjaxOptions ajaxOptions)
+        {
+            this.ajaxOptions = ajaxOptions;
             return this;
         }
     }

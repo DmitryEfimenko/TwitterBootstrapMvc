@@ -14,5 +14,10 @@ namespace TwitterBootstrapMVC
         {
             return new Bootstrap<TModel>(helper);
         }
+
+        public static BootstrapAjax<TModel> Bootstrap<TModel>(this AjaxHelper<TModel> helper)
+        {
+            return new BootstrapAjax<TModel>(helper);
+        }
     }
 }

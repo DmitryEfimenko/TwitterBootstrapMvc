@@ -30,6 +30,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -44,7 +51,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="T4MVCExtensions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\T4MVCExtensions.3.5.0\lib\net40\T4MVCExtensions.dll</HintPath>
+      <HintPath>..\packages\T4MVCExtensions.3.6.5\lib\net40\T4MVCExtensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +60,7 @@
     <Compile Include="BootstrapMethods\Bootstrap.Common.cs" />
     <Compile Include="BootstrapMethods\Bootstrap.cs" />
     <Compile Include="BootstrapHtmlExtension.cs" />
+    <Compile Include="BootstrapMethods\BootstrapAjax.cs" />
     <Compile Include="ControlInterfaces\IBootstrapListBox.cs" />
     <Compile Include="ControlInterfaces\IBootstrapInputListFromEnum.cs" />
     <Compile Include="ControlInterfaces\IBootstrapButton.cs" />
@@ -145,6 +153,10 @@
     <Compile Include="Controls\ModalSectionPanel.cs" />
     <Compile Include="Controls\Nav.cs" />
     <Compile Include="Controls\NavBuilder.cs" />
+    <Compile Include="Controls\Table.cs" />
+    <Compile Include="Controls\TableBuilder.cs" />
+    <Compile Include="Controls\TableRow.cs" />
+    <Compile Include="Controls\TableRowBuilder.cs" />
     <Compile Include="Controls\Tabs.cs" />
     <Compile Include="Controls\TabsBuilder.cs" />
     <Compile Include="Controls\TabsPanel.cs" />
@@ -161,10 +173,12 @@
     <Compile Include="Infrastructure\Enums\ButtonSize.cs" />
     <Compile Include="Infrastructure\Enums\ButtonStyle.cs" />
     <Compile Include="Infrastructure\Enums\Direction.cs" />
+    <Compile Include="Infrastructure\Enums\ActionTypePassed.cs" />
     <Compile Include="Infrastructure\Enums\FormType.cs" />
     <Compile Include="Infrastructure\Enums\Icons.cs" />
     <Compile Include="Infrastructure\Enums\HelpTextStyle.cs" />
     <Compile Include="Infrastructure\Enums\NavType.cs" />
+    <Compile Include="Infrastructure\Enums\RowColor.cs" />
     <Compile Include="Infrastructure\Enums\TextBoxSize.cs" />
     <Compile Include="Infrastructure\HtmlElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -198,8 +212,10 @@
     <Compile Include="TypeExtensions\TypeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <Compile Include="Renderers\Renderer.InputList.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

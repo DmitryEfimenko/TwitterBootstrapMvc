@@ -10,7 +10,8 @@ namespace TwitterBootstrapMVC.Infrastructure
     public abstract class HtmlElement
     {
         // Fields
-        protected IDictionary<string, object> htmlAttributes;
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IDictionary<string, object> htmlAttributes;
         protected string tag;
         protected string classToEnsure;
 
