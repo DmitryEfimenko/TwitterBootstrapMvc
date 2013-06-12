@@ -41,7 +41,8 @@ namespace TwitterBootstrapMVC.Renderers
                             htmlFieldName = htmlFieldName,
                             value = inputValue,
                             metadata = metadata,
-                            htmlAttributes = inputHtmlAttributes.ToDictionary().FormatHtmlAttributes().AddOrReplace("id", fullHtmlFieldName.FormatForMvcInputId() + "_" + index.ToString()),
+                            htmlAttributes = inputHtmlAttributes.ToDictionary().FormatHtmlAttributes(),
+                            id = fullHtmlFieldName.FormatForMvcInputId() + "_" + index.ToString(),
                             isChecked = inputIsChecked,
                             isDisabled = inputIsDisabled
                         };
@@ -58,7 +59,8 @@ namespace TwitterBootstrapMVC.Renderers
                             htmlFieldName = htmlFieldName,
                             value = inputValue,
                             metadata = metadata,
-                            htmlAttributes = inputHtmlAttributes.ToDictionary().FormatHtmlAttributes().AddOrReplace("id", fullHtmlFieldName.FormatForMvcInputId() + "_" + index.ToString()),
+                            htmlAttributes = inputHtmlAttributes.ToDictionary().FormatHtmlAttributes(),
+                            id = fullHtmlFieldName.FormatForMvcInputId() + "_" + index.ToString(),
                             isChecked = inputIsChecked,
                             isDisabled = inputIsDisabled
                         };
