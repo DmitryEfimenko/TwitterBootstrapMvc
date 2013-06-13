@@ -29,6 +29,12 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
+        public BootstrapControlGroupCustom<TModel> CustomLabel(IHtmlString label)
+        {
+            this.model.labelString = label.ToHtmlString();
+            return this;
+        }
+
         public IBootstrapLabel LabelFor<TValue>(Expression<Func<TModel, TValue>> expression)
         {
             model.htmlFieldName = ExpressionHelper.GetExpressionText(expression);
@@ -42,7 +48,7 @@ namespace TwitterBootstrapMVC.Controls
         {
             TagBuilder span = new TagBuilder("span");
             span.AddCssClass("control-label");
-            span.SetInnerText(model.labelString);
+            span.InnerHtml = model.labelString;
 
             bool fieldIsValid = true;
             if (model != null && model.htmlFieldName != null) fieldIsValid = html.ViewData.ModelState.IsValidField(model.htmlFieldName);
