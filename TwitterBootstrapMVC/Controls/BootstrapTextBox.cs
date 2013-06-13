@@ -87,6 +87,25 @@ namespace TwitterBootstrapMVC.Controls
             return (T)this;
         }
 
+        public T PrependIcon(Icons icon)
+        {
+            this._model.iconPrepend = icon;
+            return (T)this;
+        }
+
+        public T PrependIcon(Icons icon, bool isWhite)
+        {
+            this._model.iconPrepend = icon;
+            this._model.iconPrependIsWhite = isWhite;
+            return (T)this;
+        }
+
+        public T PrependIcon(string customCssClass)
+        {
+            this._model.iconPrependCustomClass = customCssClass;
+            return (T)this;
+        }
+
         public T Append(string appendString)
         {
             this._model.appendString = appendString;
@@ -96,6 +115,25 @@ namespace TwitterBootstrapMVC.Controls
         public T Append(BootstrapButton button)
         {
             this._model.appendButtons.Add(button);
+            return (T)this;
+        }
+
+        public T AppendIcon(Icons icon)
+        {
+            this._model.iconAppend = icon;
+            return (T)this;
+        }
+
+        public T AppendIcon(Icons icon, bool isWhite)
+        {
+            this._model.iconAppend = icon;
+            this._model.iconAppendIsWhite = isWhite;
+            return (T)this;
+        }
+
+        public T AppendIcon(string customCssClass)
+        {
+            this._model.iconAppendCustomClass = customCssClass;
             return (T)this;
         }
 

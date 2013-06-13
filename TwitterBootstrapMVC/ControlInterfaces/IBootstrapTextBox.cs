@@ -21,8 +21,14 @@ namespace TwitterBootstrapMVC.ControlInterfaces
         T Placeholder(string placeholder);
         T Prepend(string prependString);
         T Prepend(BootstrapButton button);
+        T PrependIcon(Icons icon);
+        T PrependIcon(Icons icon, bool isWhite);
+        T PrependIcon(string customCssClass);
         T Append(string appendString);
         T Append(BootstrapButton button);
+        T AppendIcon(Icons icon);
+        T AppendIcon(Icons icon, bool isWhite);
+        T AppendIcon(string customCssClass);
         T HelpText();
         T HelpText(string text);
         T HelpText(string text, HelpTextStyle style);

@@ -29,6 +29,12 @@ namespace TwitterBootstrapMVC.ControlModels
         public InputSize size;
         public List<BootstrapButton> prependButtons;
         public List<BootstrapButton> appendButtons;
+        public Icons iconPrepend;
+        public Icons iconAppend;
+        public bool iconPrependIsWhite;
+        public bool iconAppendIsWhite;
+        public string iconPrependCustomClass;
+        public string iconAppendCustomClass;
         public BootstrapHelpText helpText;
         public bool displayValidationMessage;
         public HelpTextStyle validationMessageStyle;

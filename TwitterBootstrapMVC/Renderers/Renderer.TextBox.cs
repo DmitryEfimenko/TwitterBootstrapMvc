@@ -32,13 +32,22 @@ namespace TwitterBootstrapMVC.Renderers
             var input = html.TextBox(model.htmlFieldName, model.value, model.format, model.htmlAttributes.FormatHtmlAttributes()).ToHtmlString();
 
             // account for appendString, prependString, and AppendButtons
-            if (!string.IsNullOrEmpty(model.prependString) | !string.IsNullOrEmpty(model.appendString) | model.appendButtons.Count() > 0)
+            if (!string.IsNullOrEmpty(model.prependString) ||
+                !string.IsNullOrEmpty(model.appendString) ||
+                model.prependButtons.Any() ||
+                model.appendButtons.Any() ||
+                model.iconPrepend != Icons._not_set ||
+                model.iconAppend != Icons._not_set ||
+                !string.IsNullOrEmpty(model.iconPrependCustomClass) ||
+                !string.IsNullOrEmpty(model.iconAppendCustomClass))
             {
                 TagBuilder appendPrependContainer = new TagBuilder("div");
                 string addOnPrependString = "";
                 string addOnAppendString = "";
                 string addOnPrependButtons = "";
                 string addOnAppendButtons = "";
+                string addOnPrependIcon = "";
+                string addOnAppendIcon = "";
 
                 TagBuilder addOn = new TagBuilder("span");
                 addOn.AddCssClass("add-on");
@@ -54,18 +63,46 @@ namespace TwitterBootstrapMVC.Renderers
                     addOn.InnerHtml = model.appendString;
                     addOnAppendString = addOn.ToString();
                 }
+                if (model.prependButtons.Count() > 0)
+                {
+                    appendPrependContainer.AddOrMergeCssClass("input-prepend");
+                    model.prependButtons.ForEach(x => addOnPrependButtons += x.ToHtmlString());
+                }
                 if (model.appendButtons.Count() > 0)
                 {
                     appendPrependContainer.AddOrMergeCssClass("input-append");
                     model.appendButtons.ForEach(x => addOnAppendButtons += x.ToHtmlString());
                 }
-                if (model.prependButtons.Count() > 0)
+                if (model.iconPrepend != Icons._not_set)
+                {
+                    appendPrependContainer.AddOrMergeCssClass("input-prepend");
+                    addOn.InnerHtml = new BootstrapIcon(model.iconPrepend, model.iconPrependIsWhite).ToHtmlString();
+                    addOnPrependIcon = addOn.ToString();
+                }
+                if (model.iconAppend != Icons._not_set)
                 {
                     appendPrependContainer.AddOrMergeCssClass("input-append");
-                    model.prependButtons.ForEach(x => addOnPrependButtons += x.ToHtmlString());
+                    addOn.InnerHtml = new BootstrapIcon(model.iconAppend, model.iconAppendIsWhite).ToHtmlString();
+                    addOnAppendIcon = addOn.ToString();
+                }
+                if (!string.IsNullOrEmpty(model.iconPrependCustomClass))
+                {
+                    appendPrependContainer.AddOrMergeCssClass("input-prepend");
+                    var i = new TagBuilder("i");
+                    i.AddCssClass(model.iconPrependCustomClass);
+                    addOn.InnerHtml = i.ToString(TagRenderMode.Normal);
+                    addOnPrependIcon = addOn.ToString();
+                }
+                if (!string.IsNullOrEmpty(model.iconAppendCustomClass))
+                {
+                    appendPrependContainer.AddOrMergeCssClass("input-append");
+                    var i = new TagBuilder("i");
+                    i.AddCssClass(model.iconAppendCustomClass);
+                    addOn.InnerHtml = i.ToString(TagRenderMode.Normal);
+                    addOnAppendIcon = addOn.ToString();
                 }
 
-                appendPrependContainer.InnerHtml = addOnPrependButtons + addOnPrependString + "{0}" + addOnAppendString + addOnAppendButtons;
+                appendPrependContainer.InnerHtml = addOnPrependButtons + addOnPrependIcon + addOnPrependString + "{0}" + addOnAppendString + addOnAppendIcon + addOnAppendButtons;
                 combinedHtml = appendPrependContainer.ToString(TagRenderMode.Normal) + "{1}{2}";
             }
 
