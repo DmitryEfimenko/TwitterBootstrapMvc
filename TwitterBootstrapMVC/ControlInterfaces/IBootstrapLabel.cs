@@ -13,6 +13,7 @@ namespace TwitterBootstrapMVC.ControlInterfaces
     public interface IBootstrapLabel : IHtmlString
     {
         IBootstrapLabel LabelText(string labelText);
+        IBootstrapLabel LabelHtml(params IHtmlString[] label);
         IBootstrapLabel ShowRequiredStar(bool showRequiredStar);
         IBootstrapLabel HtmlAttributes(object htmlAttributes);
 

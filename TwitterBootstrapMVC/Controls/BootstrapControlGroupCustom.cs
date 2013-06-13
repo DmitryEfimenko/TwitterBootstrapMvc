@@ -29,9 +29,10 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
-        public BootstrapControlGroupCustom<TModel> CustomLabel(IHtmlString label)
+        public BootstrapControlGroupCustom<TModel> CustomLabel(params IHtmlString[] label)
         {
-            this.model.labelString = label.ToHtmlString();
+            string controlsString = string.Empty;
+            label.ToList().ForEach(x => this.model.labelString += x.ToHtmlString());
             return this;
         }
 

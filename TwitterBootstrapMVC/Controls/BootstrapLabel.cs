@@ -31,6 +31,12 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
+        public IBootstrapLabel LabelHtml(params IHtmlString[] label)
+        {
+            label.ToList().ForEach(x => this._labelModel.labelText += x.ToHtmlString());
+            return this;
+        }
+
         public IBootstrapLabel ShowRequiredStar(bool showRequiredStar)
         {
             this._labelModel.showRequiredStar = showRequiredStar;
