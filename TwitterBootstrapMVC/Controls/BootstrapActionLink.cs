@@ -140,6 +140,12 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
+        public BootstrapActionLink HtmlAttributes(IDictionary<string, object> htmlAttributes)
+        {
+            this.htmlAttributes = htmlAttributes;
+            return this;
+        }
+
         public BootstrapActionLink HtmlAttributes(object htmlAttributes)
         {
             this.htmlAttributes = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);

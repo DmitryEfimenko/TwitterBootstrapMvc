@@ -42,6 +42,12 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
+        public IBootstrapDropDownList HtmlAttributes(IDictionary<string, object> htmlAttributes)
+        {
+            this._model.htmlAttributes = htmlAttributes;
+            return this;
+        }
+
         public IBootstrapDropDownList HtmlAttributes(object htmlAttributes)
         {
             this._model.htmlAttributes = htmlAttributes.ToDictionary();

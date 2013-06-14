@@ -60,6 +60,12 @@ namespace TwitterBootstrapMVC
             return this;
         }
 
+        public Carousel HtmlAttributes(IDictionary<string, object> htmlAttributes)
+        {
+            SetHtmlAttributes(htmlAttributes);
+            return this;
+        }
+
         public Carousel HtmlAttributes(object htmlAttributes)
         {
             SetHtmlAttributes(htmlAttributes);

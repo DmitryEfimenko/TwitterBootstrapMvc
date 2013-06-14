@@ -81,6 +81,12 @@ namespace TwitterBootstrapMVC
             actionTypePassed = ActionTypePassed.HtmlTaskResult;
         }
 
+        public Form HtmlAttributes(IDictionary<string, object> htmlAttributes)
+        {
+            this.htmlAttributes = htmlAttributes;
+            return this;
+        }
+
         public Form HtmlAttributes(object htmlAttributes)
         {
             this.htmlAttributes = htmlAttributes.ObjectToHtmlAttributesDictionary();

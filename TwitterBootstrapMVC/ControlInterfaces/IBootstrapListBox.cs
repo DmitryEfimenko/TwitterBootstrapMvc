@@ -13,6 +13,7 @@ namespace TwitterBootstrapMVC.ControlInterfaces
     public interface IBootstrapListBox : IHtmlString
     {
         IBootstrapListBox Id(string id);
+        IBootstrapListBox HtmlAttributes(IDictionary<string, object> htmlAttributes);
         IBootstrapListBox HtmlAttributes(object htmlAttributes);
         IBootstrapListBox HelpText();
         IBootstrapListBox HelpText(string text);

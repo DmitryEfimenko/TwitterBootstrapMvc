@@ -37,6 +37,12 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
+        public IBootstrapLabel HtmlAttributes(IDictionary<string, object> htmlAttributes)
+        {
+            this._labelModel.htmlAttributes = htmlAttributes;
+            return this;
+        }
+
         public IBootstrapLabel HtmlAttributes(object htmlAttributes)
         {
             this._labelModel.htmlAttributes = htmlAttributes.ToDictionary();

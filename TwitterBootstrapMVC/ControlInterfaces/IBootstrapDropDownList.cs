@@ -14,6 +14,7 @@ namespace TwitterBootstrapMVC.ControlInterfaces
     {
         IBootstrapDropDownList Id(string id);
         IBootstrapDropDownList OptionLabel(string optionLabel);
+        IBootstrapDropDownList HtmlAttributes(IDictionary<string, object> htmlAttributes);
         IBootstrapDropDownList HtmlAttributes(object htmlAttributes);
         IBootstrapDropDownList SelectedValue(object value);
         IBootstrapDropDownList Prepend(string prependString);

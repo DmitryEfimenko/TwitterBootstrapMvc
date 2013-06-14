@@ -14,6 +14,12 @@ namespace TwitterBootstrapMVC
             EnsureClass("form-actions");
         }
 
+        public FormActions HtmlAttributes(IDictionary<string, object> htmlAttributes)
+        {
+            SetHtmlAttributes(htmlAttributes);
+            return this;
+        }
+
         public FormActions HtmlAttributes(object htmlAttributes)
         {
             SetHtmlAttributes(htmlAttributes);

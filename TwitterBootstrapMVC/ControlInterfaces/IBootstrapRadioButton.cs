@@ -12,6 +12,7 @@ namespace TwitterBootstrapMVC.ControlInterfaces
     {
         IBootstrapRadioButton Id(string id);
         IBootstrapRadioButton IsChecked(bool isChecked);
+        IBootstrapRadioButton HtmlAttributes(IDictionary<string, object> htmlAttributes);
         IBootstrapRadioButton HtmlAttributes(object htmlAttributes);
         IBootstrapRadioButton Tooltip(TooltipConfiguration configuration);
         IBootstrapRadioButton Tooltip(string text);

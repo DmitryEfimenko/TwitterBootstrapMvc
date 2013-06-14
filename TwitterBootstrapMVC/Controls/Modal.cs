@@ -1,4 +1,5 @@
-﻿using TwitterBootstrapMVC.Infrastructure;
+﻿using System.Collections.Generic;
+using TwitterBootstrapMVC.Infrastructure;
 
 namespace TwitterBootstrapMVC
 {
@@ -13,6 +14,12 @@ namespace TwitterBootstrapMVC
         public Modal Id(string id)
         {
             MergeHtmlAttribute("id", id);
+            return this;
+        }
+
+        public Modal HtmlAttributes(IDictionary<string, object> htmlAttributes)
+        {
+            SetHtmlAttributes(htmlAttributes);
             return this;
         }
 

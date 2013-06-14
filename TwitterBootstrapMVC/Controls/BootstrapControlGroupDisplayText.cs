@@ -24,6 +24,12 @@ namespace TwitterBootstrapMVC.Controls
             this._model.metadata = metadata;
         }
 
+        public IBootstrapDisplayText HtmlAttributes(IDictionary<string, object> htmlAttributes)
+        {
+            this._model.htmlAttributes = htmlAttributes;
+            return this;
+        }
+
         public IBootstrapDisplayText HtmlAttributes(object htmlAttributes)
         {
             this._model.htmlAttributes = htmlAttributes.ToDictionary();

@@ -91,10 +91,15 @@ namespace TwitterBootstrapMVC.Infrastructure
             }
         }
 
+        protected void SetHtmlAttributes(IDictionary<string, object> htmlAttributes)
+        {
+            this.htmlAttributes = htmlAttributes;
+            if (!string.IsNullOrEmpty(this.classToEnsure)) EnsureClass(this.classToEnsure);
+        }
+
         protected void SetHtmlAttributes(object htmlAttributes)
         {
-            this.htmlAttributes = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
-            if (!string.IsNullOrEmpty(this.classToEnsure)) EnsureClass(this.classToEnsure);
+            this.SetHtmlAttributes(HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes));
         }
 
         protected void MergeHtmlAttribute(string key, string value)
