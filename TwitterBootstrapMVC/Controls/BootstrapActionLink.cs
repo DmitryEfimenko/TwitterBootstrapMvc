@@ -148,13 +148,13 @@ namespace TwitterBootstrapMVC.Controls
 
         public BootstrapActionLink HtmlAttributes(object htmlAttributes)
         {
-            this.htmlAttributes = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
+            this.htmlAttributes = htmlAttributes.ToDictionary();
             return this;
         }
 
         public BootstrapActionLink RouteValues(object routeValues)
         {
-            this.routeValues = HtmlHelper.AnonymousObjectToHtmlAttributes(routeValues);
+            this.routeValues = routeValues.ToDictionary();
             return this;
         }
 

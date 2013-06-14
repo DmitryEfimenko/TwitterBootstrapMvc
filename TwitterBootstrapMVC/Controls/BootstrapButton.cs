@@ -88,7 +88,7 @@ namespace TwitterBootstrapMVC.Controls
 
         public T HtmlAttributes(object htmlAttributes)
         {
-            this._model.htmlAttributes = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
+            this._model.htmlAttributes = htmlAttributes.ToDictionary();
             return (T)this;
         }
 

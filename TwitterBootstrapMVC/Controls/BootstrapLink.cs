@@ -42,7 +42,7 @@ namespace TwitterBootstrapMVC.Controls
 
         public BootstrapLink HtmlAttributes(object htmlAttributes)
         {
-            this.htmlAttributes = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
+            this.htmlAttributes = htmlAttributes.ToDictionary();
             return this;
         }
 

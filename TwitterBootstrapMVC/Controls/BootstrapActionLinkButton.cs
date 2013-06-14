@@ -153,7 +153,7 @@ namespace TwitterBootstrapMVC.Controls
 
         public BootstrapActionLinkButton RouteValues(object routeValues)
         {
-            this._routeValues = HtmlHelper.AnonymousObjectToHtmlAttributes(routeValues);
+            this._routeValues = routeValues.ToDictionary();
             return this;
         }
 

@@ -95,7 +95,7 @@ namespace TwitterBootstrapMVC
 
         public Form RouteValues(object routeValues)
         {
-            this.routeValues = HtmlHelper.AnonymousObjectToHtmlAttributes(routeValues);
+            this.routeValues = routeValues.ToDictionary();
             return this;
         }
 
