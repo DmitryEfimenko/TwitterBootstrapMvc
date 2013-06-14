@@ -40,6 +40,12 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
+        public IBootstrapRadioButton HtmlAttributes(IDictionary<string, object> htmlAttributes)
+        {
+            this._model.htmlAttributes = htmlAttributes;
+            return this;
+        }
+
         public IBootstrapRadioButton HtmlAttributes(object htmlAttributes)
         {
             this._model.htmlAttributes = htmlAttributes.ToDictionary();

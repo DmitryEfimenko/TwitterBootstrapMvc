@@ -14,7 +14,7 @@ namespace TwitterBootstrapMVC.Controls
     {
         private Icons _icon;
         private bool _isWhite;
-        private object _htmlAttributes;
+        private IDictionary<string, object> _htmlAttributes;
         private TooltipConfiguration _tooltipConfiguration;
         private PopoverConfiguration _popoverConfiguration;
         private string _iconCustomClass;
@@ -41,9 +41,15 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
-        public BootstrapIcon HtmlAttributes(object htmlAttributes)
+        public BootstrapIcon HtmlAttributes(IDictionary<string, object> htmlAttributes)
         {
             this._htmlAttributes = htmlAttributes;
+            return this;
+        }
+
+        public BootstrapIcon HtmlAttributes(object htmlAttributes)
+        {
+            this._htmlAttributes = htmlAttributes.ToDictionary();
             return this;
         }
 
@@ -75,7 +81,7 @@ namespace TwitterBootstrapMVC.Controls
         public virtual string ToHtmlString()
         {
             TagBuilder i = new TagBuilder("i");
-            var attrs = _htmlAttributes.ToDictionary().FormatHtmlAttributes() ?? new Dictionary<string, object>();
+            var attrs = _htmlAttributes.FormatHtmlAttributes() ?? new Dictionary<string, object>();
             if (_tooltipConfiguration != null) attrs.AddRange(_tooltipConfiguration.ToDictionary());
             if (_popoverConfiguration != null) attrs.AddRange(_popoverConfiguration.ToDictionary());
             i.MergeAttributes(attrs, true);

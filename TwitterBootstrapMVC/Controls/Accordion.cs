@@ -24,6 +24,12 @@ namespace TwitterBootstrapMVC
             EnsureHtmlAttribute("id", this.Id);
         }
 
+        public Accordion HtmlAttributes(IDictionary<string, object> htmlAttributes)
+        {
+            SetHtmlAttributes(htmlAttributes);
+            return this;
+        }
+
         public Accordion HtmlAttributes(object htmlAttributes)
         {
             SetHtmlAttributes(htmlAttributes);

@@ -9,6 +9,7 @@ namespace TwitterBootstrapMVC.ControlInterfaces
 {
     public interface IBootstrapDisplayText : IHtmlString
     {
+        IBootstrapDisplayText HtmlAttributes(IDictionary<string, object> htmlAttributes);
         IBootstrapDisplayText HtmlAttributes(object htmlAttributes);
         IBootstrapLabel Label();
 

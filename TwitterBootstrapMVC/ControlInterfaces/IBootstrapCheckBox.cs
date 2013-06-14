@@ -12,6 +12,7 @@ namespace TwitterBootstrapMVC.ControlInterfaces
     {
         IBootstrapCheckBox Id(string id);
         IBootstrapCheckBox IsChecked(bool isChecked);
+        IBootstrapCheckBox HtmlAttributes(IDictionary<string, object> htmlAttributes);
         IBootstrapCheckBox HtmlAttributes(object htmlAttributes);
         IBootstrapCheckBox Tooltip(TooltipConfiguration configuration);
         IBootstrapCheckBox Tooltip(string text);

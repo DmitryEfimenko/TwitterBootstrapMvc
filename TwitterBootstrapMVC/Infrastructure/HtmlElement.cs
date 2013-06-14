@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
+using TwitterBootstrapMVC.TypeExtensions;
 
 namespace TwitterBootstrapMVC.Infrastructure
 {
@@ -91,10 +92,15 @@ namespace TwitterBootstrapMVC.Infrastructure
             }
         }
 
+        protected void SetHtmlAttributes(IDictionary<string, object> htmlAttributes)
+        {
+            this.htmlAttributes = htmlAttributes;
+            if (!string.IsNullOrEmpty(this.classToEnsure)) EnsureClass(this.classToEnsure);
+        }
+
         protected void SetHtmlAttributes(object htmlAttributes)
         {
-            this.htmlAttributes = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
-            if (!string.IsNullOrEmpty(this.classToEnsure)) EnsureClass(this.classToEnsure);
+            this.SetHtmlAttributes(htmlAttributes.ToDictionary());
         }
 
         protected void MergeHtmlAttribute(string key, string value)

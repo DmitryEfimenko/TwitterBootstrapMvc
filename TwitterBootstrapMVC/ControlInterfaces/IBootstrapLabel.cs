@@ -15,6 +15,7 @@ namespace TwitterBootstrapMVC.ControlInterfaces
         IBootstrapLabel LabelText(string labelText);
         IBootstrapLabel LabelHtml(params IHtmlString[] label);
         IBootstrapLabel ShowRequiredStar(bool showRequiredStar);
+        IBootstrapLabel HtmlAttributes(IDictionary<string, object> htmlAttributes);
         IBootstrapLabel HtmlAttributes(object htmlAttributes);
 
         [EditorBrowsable(EditorBrowsableState.Never)]

@@ -8,29 +8,16 @@ using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Routing;
 
 namespace TwitterBootstrapMVC.TypeExtensions
 {
     public static class TypeExtensions
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static IDictionary<string, object> ToDictionary(this object data)
+        public static RouteValueDictionary ToDictionary(this object data)
         {
-            Dictionary<string, object> dictionary = new Dictionary<string, object>();
-
-            if (data == null) return dictionary; // Or throw an ArgumentNullException if you want
-
-            BindingFlags publicAttributes = BindingFlags.Public | BindingFlags.Instance;
-
-            foreach (PropertyInfo property in
-                     data.GetType().GetProperties(publicAttributes))
-            {
-                if (property.CanRead)
-                {
-                    dictionary.Add(property.Name, property.GetValue(data, null));
-                }
-            }
-            return dictionary;
+            return HtmlHelper.AnonymousObjectToHtmlAttributes(data);
         }
 
         /// <summary>
@@ -140,7 +127,7 @@ namespace TwitterBootstrapMVC.TypeExtensions
             dictionary = htmlAttributes as IDictionary<string, object>;
             if (dictionary == null)
             {
-                dictionary = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
+                dictionary = htmlAttributes.ToDictionary();
             }
             return dictionary;
         }
