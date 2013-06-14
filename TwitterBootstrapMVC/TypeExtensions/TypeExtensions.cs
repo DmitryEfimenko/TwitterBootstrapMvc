@@ -109,6 +109,7 @@ namespace TwitterBootstrapMVC.TypeExtensions
 
         public static IDictionary<string, object> FormatHtmlAttributes(this IDictionary<string, object> htmlAttributes)
         {
+            if (htmlAttributes == null) return new Dictionary<string, object>();
             IDictionary<string, object> result = new Dictionary<string, object>();
             foreach (var key in htmlAttributes.Keys)
             {
