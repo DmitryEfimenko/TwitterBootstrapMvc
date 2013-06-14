@@ -52,6 +52,12 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
+        public IBootstrapTextArea HtmlAttributes(IDictionary<string, object> htmlAttributes)
+        {
+            this._model.htmlAttributes = htmlAttributes;
+            return this;
+        }
+
         public IBootstrapTextArea HtmlAttributes(object htmlAttributes)
         {
             this._model.htmlAttributes = htmlAttributes.ToDictionary();

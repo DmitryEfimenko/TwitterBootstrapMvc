@@ -10,6 +10,7 @@ namespace TwitterBootstrapMVC.ControlInterfaces
     public interface IBootstrapFile : IHtmlString
     {
         IBootstrapFile Id(string id);
+        IBootstrapFile HtmlAttributes(IDictionary<string, object> htmlAttributes);
         IBootstrapFile HtmlAttributes(object htmlAttributes);
         IBootstrapFile HelpText();
         IBootstrapFile HelpText(string text);

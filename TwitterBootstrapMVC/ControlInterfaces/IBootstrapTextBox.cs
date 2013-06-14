@@ -15,6 +15,7 @@ namespace TwitterBootstrapMVC.ControlInterfaces
     {
         T Id(string id);
         T Value(object value);
+        T HtmlAttributes(IDictionary<string, object> htmlAttributes);
         T HtmlAttributes(object htmlAttributes);
         T Format(string format);
         T Placeholder();

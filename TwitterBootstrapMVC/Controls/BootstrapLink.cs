@@ -34,9 +34,15 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
+        public BootstrapLink HtmlAttributes(IDictionary<string, object> htmlAttributes)
+        {
+            this.htmlAttributes = htmlAttributes;
+            return this;
+        }
+
         public BootstrapLink HtmlAttributes(object htmlAttributes)
         {
-            this.htmlAttributes = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
+            this.htmlAttributes = htmlAttributes.ToDictionary();
             return this;
         }
 

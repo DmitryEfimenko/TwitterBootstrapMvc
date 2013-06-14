@@ -48,6 +48,12 @@ namespace TwitterBootstrapMVC
             return this;
         }
 
+        public Table HtmlAttributes(IDictionary<string, object> htmlAttributes)
+        {
+            SetHtmlAttributes(htmlAttributes);
+            return this;
+        }
+
         public Table HtmlAttributes(object htmlAttributes)
         {
             SetHtmlAttributes(htmlAttributes);

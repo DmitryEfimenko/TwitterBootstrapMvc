@@ -14,6 +14,7 @@ namespace TwitterBootstrapMVC.ControlInterfaces
         IBootstrapTextArea Value(string value);
         IBootstrapTextArea Rows(int rows);
         IBootstrapTextArea Columns(int columns);
+        IBootstrapTextArea HtmlAttributes(IDictionary<string, object> htmlAttributes);
         IBootstrapTextArea HtmlAttributes(object htmlAttributes);
         IBootstrapTextArea Tooltip(TooltipConfiguration configuration);
         IBootstrapTextArea Tooltip(string text);

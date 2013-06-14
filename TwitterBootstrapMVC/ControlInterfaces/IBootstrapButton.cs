@@ -13,6 +13,7 @@ namespace TwitterBootstrapMVC.ControlInterfaces
         T Text(string text);
         T Name(string name);
         T Value(string value);
+        T HtmlAttributes(IDictionary<string, object> htmlAttributes);
         T HtmlAttributes(object htmlAttributes);
         T Size(ButtonSize size);
         T Style(ButtonStyle style);

@@ -16,7 +16,7 @@ namespace TwitterBootstrapMVC.Controls
     {
         private List<BootstrapDropDownMenuItem> _menuItems;
         private string _alignToDirection;
-        private object _htmlAttributes;
+        private IDictionary<string, object> _htmlAttributes;
         private int? _maxHeight;
 
         public BootstrapDropDownMenu()
@@ -43,9 +43,15 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
-        public BootstrapDropDownMenu HtmlAttributes(object htmlAttributes)
+        public BootstrapDropDownMenu HtmlAttributes(IDictionary<string, object> htmlAttributes)
         {
             this._htmlAttributes = htmlAttributes;
+            return this;
+        }
+
+        public BootstrapDropDownMenu HtmlAttributes(object htmlAttributes)
+        {
+            this._htmlAttributes = htmlAttributes.ToDictionary();
             return this;
         }
 
@@ -66,7 +72,7 @@ namespace TwitterBootstrapMVC.Controls
         public string ToHtmlString()
         {
             TagBuilder ul = new TagBuilder("ul");
-            ul.MergeAttributes(_htmlAttributes.ToDictionary().FormatHtmlAttributes());
+            ul.MergeAttributes(_htmlAttributes.FormatHtmlAttributes());
             if(_maxHeight.HasValue)
             {
                 ul.AddCssStyle("max-height", _maxHeight.ToString() + "px");
