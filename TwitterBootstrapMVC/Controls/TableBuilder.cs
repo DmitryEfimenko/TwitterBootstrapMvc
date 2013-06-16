@@ -12,7 +12,7 @@ namespace TwitterBootstrapMVC.Controls
         internal TableBuilder(HtmlHelper<TModel> htmlHelper, Table table)
             : base(htmlHelper, table)
         {
-            if (!string.IsNullOrEmpty(base.element.caption)) this.textWriter.Write(string.Format(@"<caption>{0}</caption>", base.element.caption));
+            if (!string.IsNullOrEmpty(base.element._caption)) this.textWriter.Write(string.Format(@"<caption>{0}</caption>", base.element._caption));
         }
 
         public TableRowBuilder<TModel> BeginRow()

@@ -10,7 +10,7 @@ namespace TwitterBootstrapMVC
     public class Table : HtmlElement
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string caption;
+        public string _caption;
 
         public Table()
             : base("table")
@@ -44,7 +44,7 @@ namespace TwitterBootstrapMVC
 
         public Table Caption(string caption)
         {
-            this.caption = caption;
+            this._caption = caption;
             return this;
         }
 

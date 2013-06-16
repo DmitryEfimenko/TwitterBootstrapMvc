@@ -12,7 +12,7 @@ namespace TwitterBootstrapMVC.Controls
     public class CarouselBuilder<TModel> : BuilderBase<TModel, Carousel>
     {
         private readonly UrlHelper urlHelper;
-        private bool isFirstItem = true;
+        private bool _isFirstItem = true;
 
         internal CarouselBuilder(HtmlHelper<TModel> htmlHelper, Carousel carousel)
             : base(htmlHelper, carousel)
@@ -34,10 +34,10 @@ namespace TwitterBootstrapMVC.Controls
 
         public CarouselCustomItem CustomItem()
         {
-            bool isFirst = isFirstItem;
+            bool isFirst = _isFirstItem;
 
-            if (isFirstItem)
-                isFirstItem = false;
+            if (_isFirstItem)
+                _isFirstItem = false;
 
             return new CarouselCustomItem(base.textWriter, this.urlHelper, isFirst);
         }
@@ -47,12 +47,12 @@ namespace TwitterBootstrapMVC.Controls
         {
             base.textWriter.Write("</div>");
 
-            base.textWriter.Write(string.Format(@"<a class=""left carousel-control"" data-slide=""prev"" href=""#{0}"">‹</a>", base.element.id));
-            base.textWriter.Write(string.Format(@"<a class=""right carousel-control"" data-slide=""next"" href=""#{0}"">›</a>", base.element.id));
+            base.textWriter.Write(string.Format(@"<a class=""left carousel-control"" data-slide=""prev"" href=""#{0}"">‹</a>", base.element._id));
+            base.textWriter.Write(string.Format(@"<a class=""right carousel-control"" data-slide=""next"" href=""#{0}"">›</a>", base.element._id));
 
             base.textWriter.Write(base.element.EndTag);
 
-            if (base.element.withJs)
+            if (base.element._withJs)
             {
                 base.textWriter.Write(string.Format(
 @"<script type=""text/javascript"">
@@ -61,16 +61,16 @@ namespace TwitterBootstrapMVC.Controls
             interval: {1}
         }})
     }});
-</script>", base.element.id, base.element.interval));
+</script>", base.element._id, base.element._interval));
             }
         }
 
         private void RendererImage(string url, string altText, object htmlAttributes = null)
         {
-            if (isFirstItem)
+            if (_isFirstItem)
             {
                 base.textWriter.Write(@"<div class=""item active"">");
-                isFirstItem = false;
+                _isFirstItem = false;
             }
             else
             {

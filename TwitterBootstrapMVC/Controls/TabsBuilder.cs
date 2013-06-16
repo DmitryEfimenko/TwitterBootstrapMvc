@@ -10,17 +10,17 @@ namespace TwitterBootstrapMVC.Controls
 {
     public class TabsBuilder<TModel> : BuilderBase<TModel, Tabs>
     {
-        private int tabIndex;
-        private Queue<string> tabIds;
-        private bool isFirstTab = true;
-        private string activeTabId;
-        private bool isHeaderClosed;
+        private int _tabIndex;
+        private Queue<string> _tabIds;
+        private bool _isFirstTab = true;
+        private string _activeTabId;
+        private bool _isHeaderClosed;
 
         internal TabsBuilder(HtmlHelper<TModel> htmlHelper, Tabs tabs)
             : base(htmlHelper, tabs)
         {
-            tabIndex = 1;
-            this.tabIds = new Queue<string>();
+            _tabIndex = 1;
+            this._tabIds = new Queue<string>();
             switch (base.element.Type)
             {
                 case NavType.Pills:
@@ -40,36 +40,36 @@ namespace TwitterBootstrapMVC.Controls
             if (string.IsNullOrWhiteSpace(label))
                 throw new ArgumentNullException("label");
 
-            string tabId = base.element.Id + "-" + tabIndex;
-            this.tabIds.Enqueue(tabId);
+            string tabId = base.element._id + "-" + _tabIndex;
+            this._tabIds.Enqueue(tabId);
             
-            if (isFirstTab)
+            if (_isFirstTab)
             {
-                activeTabId = tabId;
+                _activeTabId = tabId;
                 this.WriteTab(label, "#" + tabId, true);
-                isFirstTab = false;
+                _isFirstTab = false;
             }
             else
             {
                 this.WriteTab(label, "#" + tabId, false);
             }
 
-            tabIndex++;
+            _tabIndex++;
         }
 
         public TabsPanel BeginPanel()
         {
-            if (!this.isHeaderClosed)
+            if (!this._isHeaderClosed)
             {
                 base.textWriter.Write("</ul>");
-                this.isHeaderClosed = true;
+                this._isHeaderClosed = true;
             }
 
-            string tabId = this.tabIds.Dequeue();
-            if (tabId == activeTabId)
+            string tabId = this._tabIds.Dequeue();
+            if (tabId == _activeTabId)
             {
                 base.textWriter.Write(@"<div class=""tab-content"">");
-                isFirstTab = false;
+                _isFirstTab = false;
                 return new TabsPanel(base.textWriter, "div", tabId, true);
             }
 
@@ -79,8 +79,8 @@ namespace TwitterBootstrapMVC.Controls
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Dispose()
         {
-            if (tabIndex == 1) throw new ArgumentNullException("Tab", "You should specify at least one tab");
-            if (tabIds.Count > 0) throw new ArgumentNullException("BeginPanel", "The number of panels should be the same as the number of tabs.");
+            if (_tabIndex == 1) throw new ArgumentNullException("Tab", "You should specify at least one tab");
+            if (_tabIds.Count > 0) throw new ArgumentNullException("BeginPanel", "The number of panels should be the same as the number of tabs.");
 
             // Close Tab Content Div:
             base.textWriter.Write("</div>");

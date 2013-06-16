@@ -9,8 +9,8 @@ namespace TwitterBootstrapMVC.Controls
 {
     public class TabsPanel : IDisposable
     {
-        private string tag;
         private readonly TextWriter textWriter;
+        private string _tag;
 
         internal TabsPanel(TextWriter writer, string tag, string id, bool isActive = false)
         {
@@ -18,8 +18,8 @@ namespace TwitterBootstrapMVC.Controls
             if (string.IsNullOrWhiteSpace(id)) throw new ArgumentNullException("id");
 
             this.textWriter = writer;
-            this.tag = tag;
-            TagBuilder builder = new TagBuilder(this.tag);
+            this._tag = tag;
+            TagBuilder builder = new TagBuilder(this._tag);
             builder.Attributes.Add("id", id);
             builder.AddCssClass("tab-pane");
 
@@ -30,7 +30,7 @@ namespace TwitterBootstrapMVC.Controls
 
         public void Dispose()
         {
-            this.textWriter.Write("</{0}>", this.tag);
+            this.textWriter.Write("</{0}>", this._tag);
         }
     }
 }

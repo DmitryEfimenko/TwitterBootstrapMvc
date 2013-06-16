@@ -10,7 +10,7 @@ namespace TwitterBootstrapMVC
     public class Alert : HtmlElement
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool closeable { get; set; }
+        public bool _closeable { get; set; }
 
         public Alert()
             : base("div")
@@ -37,7 +37,7 @@ namespace TwitterBootstrapMVC
 
         public Alert Closeable()
         {
-            this.closeable = true;
+            this._closeable = true;
             return this;
         }
 

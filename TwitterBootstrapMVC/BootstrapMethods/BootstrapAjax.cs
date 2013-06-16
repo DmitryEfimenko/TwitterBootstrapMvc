@@ -19,7 +19,7 @@ namespace TwitterBootstrapMVC.BootstrapMethods
 
         public FormBuilder<TModel> Begin(Form form, AjaxOptions ajaxOptions)
         {
-            form.ajaxOptions = ajaxOptions;
+            form._ajaxOptions = ajaxOptions;
             return new FormBuilder<TModel>(Ajax, form);
         }
 

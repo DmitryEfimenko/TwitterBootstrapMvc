@@ -12,7 +12,7 @@ namespace TwitterBootstrapMVC.Controls
         internal AlertBuilder(HtmlHelper<TModel> htmlHelper, Alert alert)
             : base(htmlHelper, alert)
         {
-            if (this.element.closeable)
+            if (this.element._closeable)
                 base.textWriter.Write(@"<button type=""button"" class=""close"" data-dismiss=""alert"">&times;</button>");
         }
     }

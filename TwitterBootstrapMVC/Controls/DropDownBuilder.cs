@@ -30,7 +30,7 @@ namespace TwitterBootstrapMVC.Controls
             trigger.AddOrMergeAttribute("data-toggle", "dropdown");
             trigger.AddOrMergeAttribute("href", "#");
             if (this.wrapperTag != "li") trigger.AddCssClass("btn dropdown-toggle");
-            trigger.InnerHtml = base.element.actionText + (this.wrapperTag != "li" ? @" <span class=""caret""></span>" : string.Empty);
+            trigger.InnerHtml = base.element._actionText + (this.wrapperTag != "li" ? @" <span class=""caret""></span>" : string.Empty);
 
             if (!string.IsNullOrEmpty(this.wrapperTag)) base.textWriter.Write(beginWrapperTag);
             base.textWriter.Write(trigger.ToString(TagRenderMode.Normal));

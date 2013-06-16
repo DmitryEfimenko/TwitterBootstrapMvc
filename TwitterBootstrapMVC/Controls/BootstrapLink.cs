@@ -11,106 +11,106 @@ namespace TwitterBootstrapMVC.Controls
 {
     public class BootstrapLink : IHtmlString
     {
-        private string linkText;
-        private string id;
-        private string url;
-        private IDictionary<string, object> htmlAttributes;
-        private bool disabled;
-        private Icons iconPrepend;
-        private Icons iconAppend;
-        private bool iconPrependIsWhite;
-        private bool iconAppendIsWhite;
-        private string wrapTag;
+        private string _linkText;
+        private string _id;
+        private string _url;
+        private IDictionary<string, object> _htmlAttributes;
+        private bool _disabled;
+        private Icons _iconPrepend;
+        private Icons _iconAppend;
+        private bool _iconPrependIsWhite;
+        private bool _iconAppendIsWhite;
+        private string _wrapTag;
 
         public BootstrapLink(HtmlHelper html, string linkText, string url)
         {
-            this.linkText = linkText;
-            this.url = url;
+            this._linkText = linkText;
+            this._url = url;
         }
 
         public BootstrapLink Id(string id)
         {
-            this.id = id;
+            this._id = id;
             return this;
         }
 
         public BootstrapLink HtmlAttributes(IDictionary<string, object> htmlAttributes)
         {
-            this.htmlAttributes = htmlAttributes;
+            this._htmlAttributes = htmlAttributes;
             return this;
         }
 
         public BootstrapLink HtmlAttributes(object htmlAttributes)
         {
-            this.htmlAttributes = htmlAttributes.ToDictionary();
+            this._htmlAttributes = htmlAttributes.ToDictionary();
             return this;
         }
 
         public BootstrapLink Disabled()
         {
-            this.disabled = true;
+            this._disabled = true;
             return this;
         }
 
         public BootstrapLink IconPrepend(Icons icon)
         {
-            this.iconPrepend = icon;
+            this._iconPrepend = icon;
             return this;
         }
 
         public BootstrapLink IconPrepend(Icons icon, bool isWhite)
         {
-            this.iconPrepend = icon;
-            this.iconPrependIsWhite = isWhite;
+            this._iconPrepend = icon;
+            this._iconPrependIsWhite = isWhite;
             return this;
         }
 
         public BootstrapLink IconAppend(Icons icon)
         {
-            this.iconAppend = icon;
+            this._iconAppend = icon;
             return this;
         }
 
         public BootstrapLink IconAppend(Icons icon, bool isWhite)
         {
-            this.iconAppend = icon;
-            this.iconAppendIsWhite = isWhite;
+            this._iconAppend = icon;
+            this._iconAppendIsWhite = isWhite;
             return this;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public BootstrapLink WrapInto(string tag)
         {
-            this.wrapTag = tag;
+            this._wrapTag = tag;
             return this;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string ToHtmlString()
         {
-            var mergedHtmlAttributes = htmlAttributes;
-            if (!string.IsNullOrEmpty(id)) mergedHtmlAttributes.AddIfNotExist("id", id);
-            if (disabled) mergedHtmlAttributes.AddOrMergeCssClass("class", "disabled");
+            var mergedHtmlAttributes = _htmlAttributes;
+            if (!string.IsNullOrEmpty(_id)) mergedHtmlAttributes.AddIfNotExist("id", _id);
+            if (_disabled) mergedHtmlAttributes.AddOrMergeCssClass("class", "disabled");
 
             var linkBuilder = new TagBuilder("a");
             linkBuilder.MergeAttributes(mergedHtmlAttributes);
-            linkBuilder.MergeAttribute("href", url);
+            linkBuilder.MergeAttribute("href", _url);
 
-            if (this.iconPrepend != Icons._not_set || this.iconAppend != Icons._not_set)
+            if (this._iconPrepend != Icons._not_set || this._iconAppend != Icons._not_set)
             {
                 string iPrependString = string.Empty;
                 string iAppendString = string.Empty;
 
-                if (this.iconPrepend != Icons._not_set) iPrependString = new BootstrapIcon(this.iconPrepend, this.iconPrependIsWhite).ToHtmlString() + " ";
-                if (this.iconAppend != Icons._not_set) iAppendString = " " + new BootstrapIcon(this.iconAppend, this.iconAppendIsWhite).ToHtmlString();
+                if (this._iconPrepend != Icons._not_set) iPrependString = new BootstrapIcon(this._iconPrepend, this._iconPrependIsWhite).ToHtmlString() + " ";
+                if (this._iconAppend != Icons._not_set) iAppendString = " " + new BootstrapIcon(this._iconAppend, this._iconAppendIsWhite).ToHtmlString();
 
-                linkText = iPrependString + linkText + iAppendString;
+                _linkText = iPrependString + _linkText + iAppendString;
             }
 
-            linkBuilder.InnerHtml = linkText;
+            linkBuilder.InnerHtml = _linkText;
 
             string input = linkBuilder.ToString(TagRenderMode.Normal);
-            if (!string.IsNullOrEmpty(this.wrapTag)) input = string.Format("<{0}>{1}</{0}>", this.wrapTag, input);
+            if (!string.IsNullOrEmpty(this._wrapTag)) input = string.Format("<{0}>{1}</{0}>", this._wrapTag, input);
 
             return MvcHtmlString.Create(input).ToString();
         }

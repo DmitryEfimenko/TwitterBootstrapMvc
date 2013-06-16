@@ -10,7 +10,7 @@ namespace TwitterBootstrapMVC
     public class Tabs : HtmlElement
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Id { get; set; }
+        public string _id { get; set; }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NavType Type { get; set; }
@@ -18,7 +18,7 @@ namespace TwitterBootstrapMVC
         public Tabs(string id)
             : base("div")
         {
-            this.Id = id;
+            this._id = id;
             EnsureClass("tabbable");
             this.Type = NavType.Tabs;
         }

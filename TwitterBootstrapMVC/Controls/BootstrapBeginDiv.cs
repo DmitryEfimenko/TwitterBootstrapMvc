@@ -16,7 +16,7 @@ namespace TwitterBootstrapMVC.Controls
     public class BootstrapBeginDiv : IDisposable
     {
         private readonly HtmlHelper html;
-        private bool isDisposed;
+        private bool _isDisposed;
         
 
         public BootstrapBeginDiv(HtmlHelper html, string cssClass, object htmlAttributes)
@@ -31,9 +31,9 @@ namespace TwitterBootstrapMVC.Controls
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Dispose()
         {
-            if (!isDisposed)
+            if (!_isDisposed)
             {
-                isDisposed = true;
+                _isDisposed = true;
                 html.ViewContext.Writer.Write("</div>");
             }
         }

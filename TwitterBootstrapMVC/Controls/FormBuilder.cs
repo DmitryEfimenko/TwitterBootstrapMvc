@@ -19,16 +19,16 @@ namespace TwitterBootstrapMVC.Controls
         {
             FormBuilderCommon();
 
-            switch (base.element.actionTypePassed)
+            switch (base.element._actionTypePassed)
             {
                 case ActionTypePassed.HtmlRegular:
-                    htmlHelper.BeginForm(base.element.action, base.element.controller, base.element.routeValues, base.element.formMethod, base.element.htmlAttributes);
+                    htmlHelper.BeginForm(base.element._action, base.element._controller, base.element._routeValues, base.element._formMethod, base.element.htmlAttributes);
                     break;
                 case ActionTypePassed.HtmlActionResult:
-                    htmlHelper.BeginForm(base.element.result, base.element.formMethod, base.element.htmlAttributes);
+                    htmlHelper.BeginForm(base.element._result, base.element._formMethod, base.element.htmlAttributes);
                     break;
                 case ActionTypePassed.HtmlTaskResult:
-                    htmlHelper.BeginForm(base.element.taskResult, base.element.formMethod, base.element.htmlAttributes);
+                    htmlHelper.BeginForm(base.element._taskResult, base.element._formMethod, base.element.htmlAttributes);
                     break;
             }
         }
@@ -38,23 +38,23 @@ namespace TwitterBootstrapMVC.Controls
         {
             FormBuilderCommon();
 
-            switch (base.element.actionTypePassed)
+            switch (base.element._actionTypePassed)
             {
                 case ActionTypePassed.HtmlRegular:
-                    ajaxHelper.BeginForm(base.element.action, base.element.controller, base.element.routeValues, base.element.ajaxOptions, base.element.htmlAttributes);
+                    ajaxHelper.BeginForm(base.element._action, base.element._controller, base.element._routeValues, base.element._ajaxOptions, base.element.htmlAttributes);
                     break;
                 case ActionTypePassed.HtmlActionResult:
-                    ajaxHelper.BeginForm(base.element.result, base.element.ajaxOptions, base.element.htmlAttributes);
+                    ajaxHelper.BeginForm(base.element._result, base.element._ajaxOptions, base.element.htmlAttributes);
                     break;
                 case ActionTypePassed.HtmlTaskResult:
-                    ajaxHelper.BeginForm(base.element.taskResult, base.element.ajaxOptions, base.element.htmlAttributes);
+                    ajaxHelper.BeginForm(base.element._taskResult, base.element._ajaxOptions, base.element.htmlAttributes);
                     break;
             }
         }
 
         private void FormBuilderCommon()
         {
-            switch (base.element.formType)
+            switch (base.element._formType)
             {
                 case FormType.Horizontal:
                     base.element.htmlAttributes.AddOrMergeCssClass("class", "form-horizontal");

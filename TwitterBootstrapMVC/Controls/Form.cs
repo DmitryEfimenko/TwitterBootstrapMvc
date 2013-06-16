@@ -16,69 +16,69 @@ namespace TwitterBootstrapMVC
     public class Form : HtmlElement
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string action;
+        public string _action;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string controller;
+        public string _controller;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ActionResult result;
+        public ActionResult _result;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Task<ActionResult> taskResult;
+        public Task<ActionResult> _taskResult;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RouteValueDictionary routeValues;
+        public RouteValueDictionary _routeValues;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public FormMethod formMethod;
+        public FormMethod _formMethod;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public FormType formType;
+        public FormType _formType;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ActionTypePassed actionTypePassed;
+        public ActionTypePassed _actionTypePassed;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AjaxOptions ajaxOptions;
+        public AjaxOptions _ajaxOptions;
 
         public Form()
             : base(null)
         {
-            this.formMethod = System.Web.Mvc.FormMethod.Post;
+            this._formMethod = System.Web.Mvc.FormMethod.Post;
         }
 
         public Form(string action)
             : base(null)
         {
-            this.action = action;
-            this.formMethod = System.Web.Mvc.FormMethod.Post;
-            actionTypePassed = ActionTypePassed.HtmlRegular;
+            this._action = action;
+            this._formMethod = System.Web.Mvc.FormMethod.Post;
+            _actionTypePassed = ActionTypePassed.HtmlRegular;
         }
 
         public Form(string action, string controller)
             : base(null)
         {
-            this.action = action;
-            this.controller = controller;
-            this.formMethod = System.Web.Mvc.FormMethod.Post;
-            actionTypePassed = ActionTypePassed.HtmlRegular;
+            this._action = action;
+            this._controller = controller;
+            this._formMethod = System.Web.Mvc.FormMethod.Post;
+            _actionTypePassed = ActionTypePassed.HtmlRegular;
         }
 
         public Form(ActionResult result)
             : base(null)
         {
-            this.result = result;
-            this.formMethod = System.Web.Mvc.FormMethod.Post;
-            actionTypePassed = ActionTypePassed.HtmlActionResult;
+            this._result = result;
+            this._formMethod = System.Web.Mvc.FormMethod.Post;
+            _actionTypePassed = ActionTypePassed.HtmlActionResult;
         }
 
         public Form(Task<ActionResult> taskResult)
             : base(null)
         {
-            this.taskResult = taskResult;
-            this.formMethod = System.Web.Mvc.FormMethod.Post;
-            actionTypePassed = ActionTypePassed.HtmlTaskResult;
+            this._taskResult = taskResult;
+            this._formMethod = System.Web.Mvc.FormMethod.Post;
+            _actionTypePassed = ActionTypePassed.HtmlTaskResult;
         }
 
         public Form HtmlAttributes(IDictionary<string, object> htmlAttributes)
@@ -95,31 +95,31 @@ namespace TwitterBootstrapMVC
 
         public Form RouteValues(object routeValues)
         {
-            this.routeValues = routeValues.ToDictionary();
+            this._routeValues = routeValues.ToDictionary();
             return this;
         }
 
         public Form RouteValues(RouteValueDictionary routeValues)
         {
-            this.routeValues = routeValues;
+            this._routeValues = routeValues;
             return this;
         }
 
         public Form FormMethod(FormMethod formMethod)
         {
-            this.formMethod = formMethod;
+            this._formMethod = formMethod;
             return this;
         }
 
         public Form Type(FormType type)
         {
-            this.formType = type;
+            this._formType = type;
             return this;
         }
 
         public Form AjaxOptions(AjaxOptions ajaxOptions)
         {
-            this.ajaxOptions = ajaxOptions;
+            this._ajaxOptions = ajaxOptions;
             return this;
         }
     }
