@@ -36,7 +36,7 @@ namespace TwitterBootstrapMVC.Controls
                     return null;
                 case BootstrapInputType.TextBox:
                     {
-                        var input = Renderer.RenderTextBox(html, _inputModel);
+                        var input = Renderer.RenderTextBox(html, _inputModel, false);
                         var label = Renderer.RenderLabel(html, _labelModel);
 
                         result = label + input;
@@ -44,7 +44,7 @@ namespace TwitterBootstrapMVC.Controls
                     }
                 case BootstrapInputType.Password:
                     {
-                        var input = Renderer.RenderPassword(html, _inputModel);
+                        var input = Renderer.RenderTextBox(html, _inputModel, true);
                         var label = Renderer.RenderLabel(html, _labelModel);
 
                         result = label + input;

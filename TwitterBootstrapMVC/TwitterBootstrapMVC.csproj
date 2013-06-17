@@ -202,7 +202,6 @@
     <Compile Include="Renderers\Renderer.InputListFromEnum.cs" />
     <Compile Include="Renderers\Renderer.InputListItem.cs" />
     <Compile Include="Renderers\Renderer.Label.cs" />
-    <Compile Include="Renderers\Renderer.Password.cs" />
     <Compile Include="Renderers\Renderer.RadioButton.cs" />
     <Compile Include="Renderers\Renderer.TextArea.cs" />
     <Compile Include="Renderers\Renderer.TextBox.cs" />

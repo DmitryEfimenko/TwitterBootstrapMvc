@@ -16,7 +16,7 @@ namespace TwitterBootstrapMVC.Renderers
         {
             if (string.IsNullOrEmpty(inputModel.htmlFieldName)) return null;
 
-            var input = Renderer.RenderPassword(html, inputModel);
+            var input = Renderer.RenderTextBox(html, inputModel, true);
 
             string label = Renderer.RenderLabel(html, labelModel ?? new BootstrapLabelModel
             {

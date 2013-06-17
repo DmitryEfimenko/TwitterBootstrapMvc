@@ -202,7 +202,7 @@ namespace TwitterBootstrapMVC.Controls
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual string ToHtmlString()
         {
-            return Renderer.RenderTextBox(html, _model);
+            return Renderer.RenderTextBox(html, _model, false);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

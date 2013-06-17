@@ -32,7 +32,7 @@ namespace TwitterBootstrapMVC.Controls
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ToHtmlString()
         {
-            return Renderer.RenderPassword(html, _model);
+            return Renderer.RenderTextBox(html, _model, true);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

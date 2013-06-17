@@ -17,7 +17,7 @@ namespace TwitterBootstrapMVC.Renderers
         {
             if (string.IsNullOrEmpty(inputModel.htmlFieldName)) return null;
 
-            var input = Renderer.RenderTextBox(html, inputModel);            
+            var input = Renderer.RenderTextBox(html, inputModel, false);            
             string label = Renderer.RenderLabel(html, labelModel ?? new BootstrapLabelModel
             {
                 htmlFieldName = inputModel.htmlFieldName,

@@ -16,7 +16,7 @@ namespace TwitterBootstrapMVC.Renderers
 {
     internal static partial class Renderer
     {
-        public static string RenderTextBox(HtmlHelper html, BootstrapTextBoxModel model)
+        public static string RenderTextBox(HtmlHelper html, BootstrapTextBoxModel model, bool isPassword)
         {
             if (model == null || string.IsNullOrEmpty(model.htmlFieldName)) return null;
 
@@ -29,7 +29,9 @@ namespace TwitterBootstrapMVC.Renderers
             // assign size class
             model.htmlAttributes.AddOrMergeCssClass("class", BootstrapHelper.GetClassForInputSize(model.size));
             // build html for input
-            var input = html.TextBox(model.htmlFieldName, model.value, model.format, model.htmlAttributes.FormatHtmlAttributes()).ToHtmlString();
+            var input = isPassword
+                ? html.Password(model.htmlFieldName, model.value, model.htmlAttributes.FormatHtmlAttributes()).ToHtmlString()
+                : html.TextBox(model.htmlFieldName, model.value, model.format, model.htmlAttributes.FormatHtmlAttributes()).ToHtmlString();
 
             // account for appendString, prependString, and AppendButtons
             if (!string.IsNullOrEmpty(model.prependString) ||
