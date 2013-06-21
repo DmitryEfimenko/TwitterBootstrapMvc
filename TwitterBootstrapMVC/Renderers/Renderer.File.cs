@@ -24,9 +24,12 @@ namespace TwitterBootstrapMVC.Renderers
                 string validation = html.ValidationMessage(model.htmlFieldName).ToHtmlString();
                 validationMessage = new BootstrapHelpText(validation, model.validationMessageStyle).ToHtmlString();
             }
+
+            model.htmlAttributes.AddRange(html.GetUnobtrusiveValidationAttributes(model.htmlFieldName, model.metadata));
             if (model.tooltipConfiguration != null) model.htmlAttributes.AddRange(model.tooltipConfiguration.ToDictionary());
             var mergedHtmlAttrs = model.htmlAttributes.FormatHtmlAttributes().AddOrReplace("type", "File");
             if (!string.IsNullOrEmpty(model.id)) mergedHtmlAttrs.AddOrReplace("id", model.id);
+
             return html.TextBox(model.htmlFieldName, null, mergedHtmlAttrs).ToHtmlString() + validationMessage;
         }
     }

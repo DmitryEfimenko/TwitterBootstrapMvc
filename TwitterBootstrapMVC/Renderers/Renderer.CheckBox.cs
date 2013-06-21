@@ -15,6 +15,7 @@ namespace TwitterBootstrapMVC.Renderers
     {
         public static string RenderCheckBox(HtmlHelper html, BootstrapCheckBoxModel model)
         {
+            model.htmlAttributes.AddRange(html.GetUnobtrusiveValidationAttributes(model.htmlFieldName, model.metadata));
             if (model.tooltipConfiguration != null) model.htmlAttributes.AddRange(model.tooltipConfiguration.ToDictionary());
             var mergedHtmlAttrs = string.IsNullOrEmpty(model.id) ? model.htmlAttributes : model.htmlAttributes.AddOrReplace("id", model.id);
 

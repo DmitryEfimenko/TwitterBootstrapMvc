@@ -15,6 +15,8 @@ namespace TwitterBootstrapMVC.Renderers
         public static string RenderCheckBoxCustom(HtmlHelper html, BootstrapCheckBoxModel model)
         {
             string fullHtmlFieldName = html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(model.htmlFieldName);
+
+            model.htmlAttributes.AddRange(html.GetUnobtrusiveValidationAttributes(model.htmlFieldName, model.metadata));
             if (model.tooltipConfiguration != null) model.htmlAttributes.AddRange(model.tooltipConfiguration.ToDictionary());
             
             ModelState modelState;

@@ -22,6 +22,8 @@ namespace TwitterBootstrapMVC.Renderers
 
             string combinedHtml = "{0}{1}{2}";
 
+            model.htmlAttributes.AddRange(html.GetUnobtrusiveValidationAttributes(model.htmlFieldName, model.metadata));
+            
             if (!string.IsNullOrEmpty(model.id)) model.htmlAttributes.Add("id", model.id);
             if (model.tooltipConfiguration != null) model.htmlAttributes.AddRange(model.tooltipConfiguration.ToDictionary());
             // assign placeholder class

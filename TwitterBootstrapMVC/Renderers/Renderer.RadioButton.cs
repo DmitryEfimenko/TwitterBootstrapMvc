@@ -16,6 +16,8 @@ namespace TwitterBootstrapMVC.Renderers
         public static string RenderRadioButton(HtmlHelper html, BootstrapRadioButtonModel model)
         {
             if (model.tooltipConfiguration != null) model.htmlAttributes.AddRange(model.tooltipConfiguration.ToDictionary());
+
+            model.htmlAttributes.AddRange(html.GetUnobtrusiveValidationAttributes(model.htmlFieldName, model.metadata));
             if (!string.IsNullOrEmpty(model.id)) model.htmlAttributes.AddOrReplace("id", model.id);
 
             string validationMessage = "";
