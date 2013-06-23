@@ -32,7 +32,7 @@ namespace TwitterBootstrapMVC.Renderers
             model.htmlAttributes.AddOrMergeCssClass("class", BootstrapHelper.GetClassForInputSize(model.size));
             // build html for input
             var input = isPassword
-                ? html.Password(model.htmlFieldName, model.value, model.htmlAttributes.FormatHtmlAttributes()).ToHtmlString()
+                ? html.Password(model.htmlFieldName, null, model.htmlAttributes.FormatHtmlAttributes()).ToHtmlString()
                 : html.TextBox(model.htmlFieldName, model.value, model.format, model.htmlAttributes.FormatHtmlAttributes()).ToHtmlString();
 
             // account for appendString, prependString, and AppendButtons

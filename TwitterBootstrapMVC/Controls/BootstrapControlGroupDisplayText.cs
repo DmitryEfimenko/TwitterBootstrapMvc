@@ -38,7 +38,7 @@ namespace TwitterBootstrapMVC.Controls
 
         public IBootstrapLabel Label()
         {
-            IBootstrapLabel l = new BootstrapInputLabeled(html, _model, BootstrapInputType.Display);
+            IBootstrapLabel l = new BootstrapControlGroupLabeled(html, _model, BootstrapInputType.Display);
             return l;
         }
 

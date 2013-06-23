@@ -112,6 +112,14 @@ namespace TwitterBootstrapMVC.Controls
                         result = label + input;
                         break;
                     }
+                case BootstrapInputType.Display:
+                    {
+                        var input = Renderer.RenderDisplayText(html, _inputModel);
+                        var label = Renderer.RenderLabel(html, _labelModel);
+
+                        result = label + input;
+                        break;
+                    }
             }
             return result;
         }

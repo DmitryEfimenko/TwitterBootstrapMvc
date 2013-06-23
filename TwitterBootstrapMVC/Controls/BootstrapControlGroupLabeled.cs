@@ -23,7 +23,7 @@ namespace TwitterBootstrapMVC.Controls
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ToHtmlString()
         {
-            string input = string.Empty;
+            var input = string.Empty;
             switch (_inputType)
             {
                 case BootstrapInputType._NotSet:
@@ -71,6 +71,10 @@ namespace TwitterBootstrapMVC.Controls
                 case BootstrapInputType.Custom:
                     _labelModel.htmlAttributes.AddOrMergeCssClass("class", "control-label");
                     input = Renderer.RenderControlGroupCustom(html, _inputModel.input, _labelModel);
+                    break;
+                case BootstrapInputType.Display:
+                    _labelModel.htmlAttributes.AddOrMergeCssClass("class", "control-label");
+                    input = Renderer.RenderControlGroupDisplayText(html, _inputModel, _labelModel);
                     break;
             }
             return input;
