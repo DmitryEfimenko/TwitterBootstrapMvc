@@ -25,8 +25,8 @@ namespace TwitterBootstrapMVC.Renderers
                 validationMessage = new BootstrapHelpText(validation, model.validationMessageStyle).ToHtmlString();
             }
 
-            model.htmlAttributes.AddRange(html.GetUnobtrusiveValidationAttributes(model.htmlFieldName, model.metadata));
-            if (model.tooltipConfiguration != null) model.htmlAttributes.AddRange(model.tooltipConfiguration.ToDictionary());
+            model.htmlAttributes.MergeHtmlAttributes(html.GetUnobtrusiveValidationAttributes(model.htmlFieldName, model.metadata));
+            if (model.tooltipConfiguration != null) model.htmlAttributes.MergeHtmlAttributes(model.tooltipConfiguration.ToDictionary());
             var mergedHtmlAttrs = model.htmlAttributes.FormatHtmlAttributes().AddOrReplace("type", "File");
             if (!string.IsNullOrEmpty(model.id)) mergedHtmlAttrs.AddOrReplace("id", model.id);
 

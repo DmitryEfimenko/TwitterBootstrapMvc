@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using TwitterBootstrapMVC.Infrastructure;
 
 namespace TwitterBootstrapMVC
 {
     public class Modal : HtmlElement
     {
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool _closeable { get; set; }
+
         public Modal()
             : base("div")
         {
@@ -32,6 +36,12 @@ namespace TwitterBootstrapMVC
         public Modal Fade()
         {
             EnsureClass("fade");
+            return this;
+        }
+
+        public Modal Closeable()
+        {
+            this._closeable = true;
             return this;
         }
     }

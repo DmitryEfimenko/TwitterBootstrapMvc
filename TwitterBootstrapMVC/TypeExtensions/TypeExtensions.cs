@@ -87,14 +87,18 @@ namespace TwitterBootstrapMVC.TypeExtensions
             return data;
         }
 
-        public static void AddRange<T, S>(this IDictionary<T, S> source, IDictionary<T, S> collection)
+        /// <summary>
+        /// Merges two dictionaries. If key exists, it overrides it with new value.
+        /// In case it's a class, it will add new values to existing.
+        /// </summary>
+        public static void MergeHtmlAttributes(this IDictionary<string, object> source, IDictionary<string, object> htmlAttributes)
         {
-            if (collection == null)
+            if (htmlAttributes == null)
             {
                 throw new ArgumentNullException("Collection is null");
             }
 
-            foreach (var item in collection)
+            foreach (var item in htmlAttributes)
             {
                 if (!source.ContainsKey(item.Key))
                 {
@@ -103,6 +107,14 @@ namespace TwitterBootstrapMVC.TypeExtensions
                 else
                 {
                     // handle duplicate key issue here
+                    if (item.Key.ToLower() == "class")
+                    {
+                        source[item.Key] = source[item.Key] + " " + item.Value;
+                    }
+                    else
+                    {
+                        source[item.Key] = item.Value;
+                    }
                 }
             }
         }

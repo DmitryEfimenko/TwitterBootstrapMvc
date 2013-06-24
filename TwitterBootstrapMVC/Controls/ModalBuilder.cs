@@ -16,17 +16,17 @@ namespace TwitterBootstrapMVC.Controls
 
         public ModalSectionPanel BeginHeader()
         {
-            return new ModalSectionPanel(ModalSection.Header, base.textWriter);
+            return new ModalSectionPanel(ModalSection.Header, base.textWriter, base.element._closeable);
         }
 
         public ModalSectionPanel BeginBody()
         {
-            return new ModalSectionPanel(ModalSection.Body, base.textWriter);
+            return new ModalSectionPanel(ModalSection.Body, base.textWriter, false);
         }
 
         public ModalSectionPanel BeginFooter()
         {
-            return new ModalSectionPanel(ModalSection.Footer, base.textWriter);
+            return new ModalSectionPanel(ModalSection.Footer, base.textWriter, false);
         }
     }
 }

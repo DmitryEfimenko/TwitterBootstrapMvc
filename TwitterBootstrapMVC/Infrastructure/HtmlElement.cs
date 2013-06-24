@@ -46,7 +46,7 @@ namespace TwitterBootstrapMVC.Infrastructure
 
         protected void EnsureClass(string className)
         {
-            this.classToEnsure = className;
+            //this.classToEnsure = className;
             if (this.htmlAttributes.ContainsKey("class"))
             {
                 string currentValue = this.htmlAttributes["class"].ToString();
@@ -94,13 +94,13 @@ namespace TwitterBootstrapMVC.Infrastructure
 
         protected void SetHtmlAttributes(IDictionary<string, object> htmlAttributes)
         {
-            this.htmlAttributes = htmlAttributes;
-            if (!string.IsNullOrEmpty(this.classToEnsure)) EnsureClass(this.classToEnsure);
+            this.htmlAttributes.MergeHtmlAttributes(htmlAttributes.ObjectToHtmlAttributesDictionary());
+            //if (!string.IsNullOrEmpty(this.classToEnsure)) EnsureClass(this.classToEnsure);
         }
 
         protected void SetHtmlAttributes(object htmlAttributes)
         {
-            this.SetHtmlAttributes(htmlAttributes.ToDictionary());
+            this.SetHtmlAttributes(htmlAttributes.ToDictionary().FormatHtmlAttributes());
         }
 
         protected void MergeHtmlAttribute(string key, string value)

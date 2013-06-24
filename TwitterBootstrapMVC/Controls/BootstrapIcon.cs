@@ -82,8 +82,8 @@ namespace TwitterBootstrapMVC.Controls
         {
             TagBuilder i = new TagBuilder("i");
             var attrs = _htmlAttributes.FormatHtmlAttributes() ?? new Dictionary<string, object>();
-            if (_tooltipConfiguration != null) attrs.AddRange(_tooltipConfiguration.ToDictionary());
-            if (_popoverConfiguration != null) attrs.AddRange(_popoverConfiguration.ToDictionary());
+            if (_tooltipConfiguration != null) attrs.MergeHtmlAttributes(_tooltipConfiguration.ToDictionary());
+            if (_popoverConfiguration != null) attrs.MergeHtmlAttributes(_popoverConfiguration.ToDictionary());
             i.MergeAttributes(attrs, true);
             if(_icon != Icons._not_set) i.AddCssClass(_icon.GetEnumDescription());
             if (!string.IsNullOrEmpty(_iconCustomClass)) i.AddCssClass(_iconCustomClass);

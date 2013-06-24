@@ -16,8 +16,8 @@ namespace TwitterBootstrapMVC.Renderers
         {
             string fullHtmlFieldName = html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(model.htmlFieldName);
 
-            model.htmlAttributes.AddRange(html.GetUnobtrusiveValidationAttributes(model.htmlFieldName, model.metadata));
-            if (model.tooltipConfiguration != null) model.htmlAttributes.AddRange(model.tooltipConfiguration.ToDictionary());
+            model.htmlAttributes.MergeHtmlAttributes(html.GetUnobtrusiveValidationAttributes(model.htmlFieldName, model.metadata));
+            if (model.tooltipConfiguration != null) model.htmlAttributes.MergeHtmlAttributes(model.tooltipConfiguration.ToDictionary());
             
             ModelState modelState;
             if (html.ViewData.ModelState.TryGetValue(fullHtmlFieldName, out modelState))

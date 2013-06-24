@@ -29,8 +29,8 @@ namespace TwitterBootstrapMVC.Renderers
                 }
             }
 
-            model.htmlAttributes.AddRange(html.GetUnobtrusiveValidationAttributes(model.htmlFieldName, model.metadata));
-            if (model.tooltipConfiguration != null) model.htmlAttributes.AddRange(model.tooltipConfiguration.ToDictionary());
+            model.htmlAttributes.MergeHtmlAttributes(html.GetUnobtrusiveValidationAttributes(model.htmlFieldName, model.metadata));
+            if (model.tooltipConfiguration != null) model.htmlAttributes.MergeHtmlAttributes(model.tooltipConfiguration.ToDictionary());
             if (!string.IsNullOrEmpty(model.id)) model.htmlAttributes.AddOrReplace("id", model.id);
             
             // assign size class
