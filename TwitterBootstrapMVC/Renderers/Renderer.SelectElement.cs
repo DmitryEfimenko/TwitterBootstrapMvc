@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using TwitterBootstrapMVC.ControlModels;
@@ -17,8 +14,6 @@ namespace TwitterBootstrapMVC.Renderers
     {
         public static string RenderSelectElement(HtmlHelper html, BootstrapSelectElementModel model, BootstrapInputType inputType)
         {
-            if (model == null || string.IsNullOrEmpty(model.htmlFieldName) || model.selectList == null) return null;
-
             string combinedHtml = "{0}{1}{2}";
             if (model.selectedValue != null)
             {

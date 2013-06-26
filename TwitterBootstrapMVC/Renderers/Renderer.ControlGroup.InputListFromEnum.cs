@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using TwitterBootstrapMVC.ControlModels;
 using TwitterBootstrapMVC.Controls;
 using TwitterBootstrapMVC.TypeExtensions;
@@ -13,8 +9,6 @@ namespace TwitterBootstrapMVC.Renderers
     {
         public static string RenderControlGroupInputListFromEnum(HtmlHelper html, BootstrapInputListFromEnumModel model)
         {
-            if (string.IsNullOrEmpty(model.htmlFieldName)) return null;
-
             var input = Renderer.RenderInputListFromEnum(html, model);
 
             string label = Renderer.RenderLabel(html, new BootstrapLabelModel

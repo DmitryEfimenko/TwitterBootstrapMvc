@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-using System.Web.Mvc.Html;
+﻿using System.Web.Mvc;
 using TwitterBootstrapMVC.ControlModels;
 using TwitterBootstrapMVC.Controls;
 using TwitterBootstrapMVC.Infrastructure.Enums;
@@ -16,8 +10,6 @@ namespace TwitterBootstrapMVC.Renderers
     {
         public static string RenderControlGroupSelectElement(HtmlHelper html, BootstrapSelectElementModel inputModel, BootstrapLabelModel labelModel, BootstrapInputType inputType)
         {
-            if (string.IsNullOrEmpty(inputModel.htmlFieldName) || inputModel.selectList == null) return null;
-
             string input = string.Empty;
             
             if(inputType == BootstrapInputType.DropDownList)

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-using System.Web.Mvc.Html;
+﻿using System.Web.Mvc;
 using TwitterBootstrapMVC.ControlModels;
 using TwitterBootstrapMVC.Controls;
 using TwitterBootstrapMVC.TypeExtensions;
@@ -15,8 +9,6 @@ namespace TwitterBootstrapMVC.Renderers
     {
         public static string RenderControlGroupDisplayText(HtmlHelper html, BootstrapDisplayTextModel inputModel, BootstrapLabelModel labelModel)
         {
-            if (string.IsNullOrEmpty(inputModel.htmlFieldName)) return null;
-
             var input = Renderer.RenderDisplayText(html, inputModel);
 
             string label = Renderer.RenderLabel(html, labelModel ?? new BootstrapLabelModel

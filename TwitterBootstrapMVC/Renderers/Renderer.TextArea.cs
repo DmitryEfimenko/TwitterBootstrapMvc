@@ -15,8 +15,6 @@ namespace TwitterBootstrapMVC.Renderers
     {
         public static string RenderTextArea(HtmlHelper html, BootstrapTextAreaModel model)
         {
-            if (model == null || string.IsNullOrEmpty(model.htmlFieldName)) return null;
-
             string validationMessage = "";
             if (model.displayValidationMessage)
             {

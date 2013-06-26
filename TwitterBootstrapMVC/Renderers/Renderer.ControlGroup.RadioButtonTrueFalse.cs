@@ -11,8 +11,6 @@ namespace TwitterBootstrapMVC.Renderers
     {
         public static string RenderControlGroupRadioButtonTrueFalse(HtmlHelper html, BootstrapRadioButtonTrueFalseModel inputModel, BootstrapLabelModel labelModel)
         {
-            if (string.IsNullOrEmpty(inputModel.htmlFieldName)) return null;
-
             var input = Renderer.RenderRadioButtonTrueFalse(html, inputModel);
 
             string label = Renderer.RenderLabel(html, labelModel ?? new BootstrapLabelModel

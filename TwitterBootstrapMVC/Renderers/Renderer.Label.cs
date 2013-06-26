@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Web.Mvc;
-using TwitterBootstrapMVC.ControlInterfaces;
 using TwitterBootstrapMVC.ControlModels;
 using TwitterBootstrapMVC.Infrastructure.Enums;
 using TwitterBootstrapMVC.TypeExtensions;
@@ -15,8 +10,6 @@ namespace TwitterBootstrapMVC.Renderers
     {
         public static string RenderLabel(HtmlHelper html, BootstrapLabelModel model)
         {
-            if (string.IsNullOrEmpty(model.htmlFieldName)) return null;
-
             string fullHtmlFieldName = html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(model.htmlFieldName);
 
             if (string.IsNullOrEmpty(model.labelText))

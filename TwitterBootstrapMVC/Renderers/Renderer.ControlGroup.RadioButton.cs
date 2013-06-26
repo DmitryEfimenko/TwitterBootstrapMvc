@@ -3,7 +3,6 @@ using System.Web.Mvc.Html;
 using TwitterBootstrapMVC.ControlModels;
 using TwitterBootstrapMVC.Controls;
 using TwitterBootstrapMVC.Infrastructure.Enums;
-using TwitterBootstrapMVC.TypeExtensions;
 
 namespace TwitterBootstrapMVC.Renderers
 {
@@ -11,8 +10,6 @@ namespace TwitterBootstrapMVC.Renderers
     {
         public static string RenderControlGroupRadioButton(HtmlHelper html, BootstrapRadioButtonModel inputModel, BootstrapLabelModel labelModel)
         {
-            if (string.IsNullOrEmpty(inputModel.htmlFieldName)) return null;
-
             string validationMessage = "";
             if (inputModel.displayValidationMessage)
             {
