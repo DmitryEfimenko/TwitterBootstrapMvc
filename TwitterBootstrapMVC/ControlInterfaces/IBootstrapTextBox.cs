@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
-using System.Web.Mvc;
 using TwitterBootstrapMVC.Controls;
-using TwitterBootstrapMVC;
 
 namespace TwitterBootstrapMVC.ControlInterfaces
 {
@@ -35,9 +30,11 @@ namespace TwitterBootstrapMVC.ControlInterfaces
         T HelpText(string text, HelpTextStyle style);
         T Size(InputSize size);
         T Tooltip(TooltipConfiguration configuration);
+        T Tooltip(Tooltip tooltip);
         T Tooltip(string text);
         T ShowValidationMessage(bool displayValidationMessage);
         T ShowValidationMessage(bool displayValidationMessage, HelpTextStyle validationMessageStyle);
+        T Typehead(Typehead typehead);
         IBootstrapLabel Label();
 
         [EditorBrowsable(EditorBrowsableState.Never)]

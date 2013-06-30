@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Html;
 using TwitterBootstrapMVC.ControlInterfaces;
 using TwitterBootstrapMVC.ControlModels;
 using TwitterBootstrapMVC.Infrastructure.Enums;
@@ -25,7 +20,7 @@ namespace TwitterBootstrapMVC.Controls
             this.html = html;
             this._model.htmlFieldName = htmlFieldName;
             this._model.metadata = metadata;
-            this._model.isChecked = (metadata.Model != null) ? bool.Parse(metadata.Model.ToString()) : false;
+            this._model.isChecked = (metadata.Model != null) && bool.Parse(metadata.Model.ToString());
         }
 
         public BootstrapCheckBox(HtmlHelper html, string htmlFieldName, ModelMetadata metadata, object value, bool isSingleInput)
@@ -33,7 +28,7 @@ namespace TwitterBootstrapMVC.Controls
             this.html = html;
             this._model.htmlFieldName = htmlFieldName;
             this._model.metadata = metadata;
-            this._model.isChecked = (metadata.Model != null) ? bool.Parse(metadata.Model.ToString()) : false;
+            this._model.isChecked = (metadata.Model != null) && bool.Parse(metadata.Model.ToString());
             this._model.value = value;
             this._model.isSingleInput = isSingleInput;
         }
@@ -62,15 +57,22 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
+        [Obsolete("This overload is deprecated and will be removed in the future versions. Use .Tooltip(Tooltip tooltip) instead.")]
         public IBootstrapCheckBox Tooltip(TooltipConfiguration configuration)
         {
             this._model.tooltipConfiguration = configuration;
             return this;
         }
 
+        public IBootstrapCheckBox Tooltip(Tooltip tooltip)
+        {
+            this._model.tooltip = tooltip;
+            return this;
+        }
+
         public IBootstrapCheckBox Tooltip(string title)
         {
-            this._model.tooltipConfiguration = new TooltipConfiguration(title);
+            this._model.tooltip = new Tooltip(title);
             return this;
         }
 

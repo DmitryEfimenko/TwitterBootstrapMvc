@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Web.Mvc;
 using TwitterBootstrapMVC.Infrastructure;
 
@@ -11,15 +9,17 @@ namespace TwitterBootstrapMVC.Controls
     public class TabsBuilder<TModel> : BuilderBase<TModel, Tabs>
     {
         private int _tabIndex;
+        private int _panelIndex;
         private Queue<string> _tabIds;
         private bool _isFirstTab = true;
-        private string _activeTabId;
+        private int _activeTabIndex;
         private bool _isHeaderClosed;
 
         internal TabsBuilder(HtmlHelper<TModel> htmlHelper, Tabs tabs)
             : base(htmlHelper, tabs)
         {
             _tabIndex = 1;
+            _activeTabIndex = base.element._activeTabIndex;
             this._tabIds = new Queue<string>();
             switch (base.element.Type)
             {
@@ -45,13 +45,13 @@ namespace TwitterBootstrapMVC.Controls
             
             if (_isFirstTab)
             {
-                _activeTabId = tabId;
-                this.WriteTab(label, "#" + tabId, true);
+                if (_activeTabIndex == 0) _activeTabIndex = 1;
+                this.WriteTab(label, tabId, _tabIndex == _activeTabIndex);
                 _isFirstTab = false;
             }
             else
             {
-                this.WriteTab(label, "#" + tabId, false);
+                this.WriteTab(label, tabId, _tabIndex == _activeTabIndex);
             }
 
             _tabIndex++;
@@ -59,6 +59,7 @@ namespace TwitterBootstrapMVC.Controls
 
         public TabsPanel BeginPanel()
         {
+            _panelIndex++;
             if (!this._isHeaderClosed)
             {
                 base.textWriter.Write("</ul>");
@@ -66,7 +67,7 @@ namespace TwitterBootstrapMVC.Controls
             }
 
             string tabId = this._tabIds.Dequeue();
-            if (tabId == _activeTabId)
+            if (_panelIndex == 1)
             {
                 base.textWriter.Write(@"<div class=""tab-content"">");
                 _isFirstTab = false;
@@ -89,14 +90,10 @@ namespace TwitterBootstrapMVC.Controls
 
         private void WriteTab(string label, string href, bool isActive)
         {
-            if (isActive)
-            {
-                base.textWriter.Write(string.Format(@"<li class=""active""><a data-toggle=""tab"" href=""#{1}"">{0}</a></li>", label, href));
-            }
-            else
-            {
-                base.textWriter.Write(string.Format(@"<li><a data-toggle=""tab"" href=""#{1}"">{0}</a></li>", label, href));
-            }
+            textWriter.Write(isActive
+                ? string.Format(@"<li class=""active""><a data-toggle=""tab"" href=""#{1}"">{0}</a></li>", label, href)
+                : string.Format(@"<li><a data-toggle=""tab"" href=""#{1}"">{0}</a></li>", label, href)
+            );
         }
     }
 }

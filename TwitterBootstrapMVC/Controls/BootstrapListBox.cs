@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Html;
 using TwitterBootstrapMVC.ControlInterfaces;
 using TwitterBootstrapMVC.ControlModels;
 using TwitterBootstrapMVC.Infrastructure;
@@ -71,15 +66,22 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
+        [Obsolete("This overload is deprecated and will be removed in the future versions. Use .Tooltip(Tooltip tooltip) instead.")]
         public IBootstrapListBox Tooltip(TooltipConfiguration configuration)
         {
             this._model.tooltipConfiguration = configuration;
             return this;
         }
 
+        public IBootstrapListBox Tooltip(Tooltip tooltip)
+        {
+            this._model.tooltip = tooltip;
+            return this;
+        }
+
         public IBootstrapListBox Tooltip(string title)
         {
-            this._model.tooltipConfiguration = new TooltipConfiguration(title);
+            this._model.tooltip = new Tooltip(title);
             return this;
         }
 

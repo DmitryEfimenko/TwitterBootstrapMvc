@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -38,7 +36,7 @@ namespace TwitterBootstrapMVC.Controls
         private bool _iconPrependIsWhite;
         private bool _iconAppendIsWhite;
         private string _wrapTag;
-        private ActionTypePassed _actionTypePassed;
+        private readonly ActionTypePassed _actionTypePassed;
 
         public BootstrapActionLink(HtmlHelper html, string linkText, ActionResult result)
         {

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace TwitterBootstrapMVC.ControlInterfaces
@@ -15,6 +12,7 @@ namespace TwitterBootstrapMVC.ControlInterfaces
         IBootstrapRadioButton HtmlAttributes(IDictionary<string, object> htmlAttributes);
         IBootstrapRadioButton HtmlAttributes(object htmlAttributes);
         IBootstrapRadioButton Tooltip(TooltipConfiguration configuration);
+        IBootstrapRadioButton Tooltip(Tooltip tooltip);
         IBootstrapRadioButton Tooltip(string text);
         IBootstrapRadioButton ShowValidationMessage(bool displayValidationMessage);
         IBootstrapRadioButton ShowValidationMessage(bool displayValidationMessage, HelpTextStyle validationMessageStyle);

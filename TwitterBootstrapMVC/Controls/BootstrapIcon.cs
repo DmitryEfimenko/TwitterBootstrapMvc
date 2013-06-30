@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using TwitterBootstrapMVC.ControlInterfaces;
 using TwitterBootstrapMVC.TypeExtensions;
 
 namespace TwitterBootstrapMVC.Controls
 {
     public class BootstrapIcon : IHtmlString
     {
-        private Icons _icon;
+        private readonly Icons _icon;
         private bool _isWhite;
         private IDictionary<string, object> _htmlAttributes;
         private TooltipConfiguration _tooltipConfiguration;
+        private Tooltip _tooltip;
         private PopoverConfiguration _popoverConfiguration;
-        private string _iconCustomClass;
+        private Popover _popover;
+        private readonly string _iconCustomClass;
 
         public BootstrapIcon(Icons icon)
         {
@@ -53,21 +52,35 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
+        [Obsolete("This overload is deprecated and will be removed in the future versions. Use .Tooltip(Tooltip tooltip) instead.")]
         public BootstrapIcon Tooltip(TooltipConfiguration configuration)
         {
             this._tooltipConfiguration = configuration;
             return this;
         }
 
-        public BootstrapIcon Tooltip(string title)
+        public BootstrapIcon Tooltip(Tooltip tooltip)
         {
-            this._tooltipConfiguration = new TooltipConfiguration(title);
+            this._tooltip = tooltip;
             return this;
         }
 
+        public BootstrapIcon Tooltip(string title)
+        {
+            this._tooltip = new Tooltip(title);
+            return this;
+        }
+
+        [Obsolete("This overload is deprecated and will be removed in the future versions. Use .Popover(Popover popover) instead.")]
         public BootstrapIcon Popover(PopoverConfiguration configuration)
         {
             this._popoverConfiguration = configuration;
+            return this;
+        }
+
+        public BootstrapIcon Popover(Popover popover)
+        {
+            this._popover = popover;
             return this;
         }
 
@@ -83,7 +96,9 @@ namespace TwitterBootstrapMVC.Controls
             TagBuilder i = new TagBuilder("i");
             var attrs = _htmlAttributes.FormatHtmlAttributes() ?? new Dictionary<string, object>();
             if (_tooltipConfiguration != null) attrs.MergeHtmlAttributes(_tooltipConfiguration.ToDictionary());
+            if (_tooltip != null) attrs.MergeHtmlAttributes(_tooltip.ToDictionary());
             if (_popoverConfiguration != null) attrs.MergeHtmlAttributes(_popoverConfiguration.ToDictionary());
+            if (_popover != null) attrs.MergeHtmlAttributes(_popover.ToDictionary());
             i.MergeAttributes(attrs, true);
             if(_icon != Icons._not_set) i.AddCssClass(_icon.GetEnumDescription());
             if (!string.IsNullOrEmpty(_iconCustomClass)) i.AddCssClass(_iconCustomClass);

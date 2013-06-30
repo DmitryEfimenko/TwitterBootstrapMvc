@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace TwitterBootstrapMVC.ControlInterfaces
@@ -15,6 +12,7 @@ namespace TwitterBootstrapMVC.ControlInterfaces
         IBootstrapCheckBox HtmlAttributes(IDictionary<string, object> htmlAttributes);
         IBootstrapCheckBox HtmlAttributes(object htmlAttributes);
         IBootstrapCheckBox Tooltip(TooltipConfiguration configuration);
+        IBootstrapCheckBox Tooltip(Tooltip tooltip);
         IBootstrapCheckBox Tooltip(string text);
         IBootstrapCheckBox ShowValidationMessage(bool displayValidationMessage);
         IBootstrapCheckBox ShowValidationMessage(bool displayValidationMessage, HelpTextStyle validationMessageStyle);

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Web;
 
 namespace TwitterBootstrapMVC.ControlInterfaces
@@ -16,6 +13,7 @@ namespace TwitterBootstrapMVC.ControlInterfaces
         IBootstrapRadioButtonTrueFalse HtmlAttributesLabelFalse(object htmlAttributes);
         IBootstrapRadioButtonTrueFalse InputLabelsText(string trueText, string falseText);
         IBootstrapRadioButtonTrueFalse Tooltip(TooltipConfiguration configuration);
+        IBootstrapRadioButtonTrueFalse Tooltip(Tooltip tooltip);
         IBootstrapRadioButtonTrueFalse Tooltip(string text);
         IBootstrapRadioButtonTrueFalse HelpText();
         IBootstrapRadioButtonTrueFalse HelpText(string text);

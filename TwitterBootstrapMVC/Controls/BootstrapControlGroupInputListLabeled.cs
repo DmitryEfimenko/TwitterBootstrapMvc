@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Web.Mvc;
 using TwitterBootstrapMVC.Infrastructure.Enums;
-using TwitterBootstrapMVC.TypeExtensions;
 using TwitterBootstrapMVC.Renderers;
+using TwitterBootstrapMVC.TypeExtensions;
 
 namespace TwitterBootstrapMVC.Controls
 {

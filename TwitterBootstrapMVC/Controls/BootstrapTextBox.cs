@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Html;
 using TwitterBootstrapMVC.ControlInterfaces;
-using TwitterBootstrapMVC.TypeExtensions;
-using TwitterBootstrapMVC.Renderers;
 using TwitterBootstrapMVC.ControlModels;
 using TwitterBootstrapMVC.Infrastructure;
 using TwitterBootstrapMVC.Infrastructure.Enums;
+using TwitterBootstrapMVC.Renderers;
+using TwitterBootstrapMVC.TypeExtensions;
 
 namespace TwitterBootstrapMVC.Controls
 {
@@ -167,6 +162,13 @@ namespace TwitterBootstrapMVC.Controls
             return (T)this;
         }
 
+        public T Tooltip(Tooltip tooltip)
+        {
+            this._model.tooltip = tooltip;
+            return (T)this;
+        }
+
+        [Obsolete("This overload is deprecated and will be removed in the future versions. Use .Tooltip(Tooltip tooltip) instead.")]
         public T Tooltip(TooltipConfiguration configuration)
         {
             this._model.tooltipConfiguration = configuration;
@@ -175,7 +177,7 @@ namespace TwitterBootstrapMVC.Controls
 
         public T Tooltip(string title)
         {
-            this._model.tooltipConfiguration = new TooltipConfiguration(title);
+            this._model.tooltip = new Tooltip(title);
             return (T)this;
         }
 
@@ -190,6 +192,12 @@ namespace TwitterBootstrapMVC.Controls
         {
             this._model.displayValidationMessage = displayValidationMessage;
             this._model.validationMessageStyle = validationMessageStyle;
+            return (T)this;
+        }
+
+        public T Typehead(Typehead typehead)
+        {
+            _model.typehead = typehead;
             return (T)this;
         }
 

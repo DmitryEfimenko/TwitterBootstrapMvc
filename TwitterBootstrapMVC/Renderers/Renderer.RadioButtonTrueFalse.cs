@@ -16,6 +16,7 @@ namespace TwitterBootstrapMVC.Renderers
             inputsContainer.AddCssStyle("display", "inline-block");
             inputsContainer.AddCssStyle("margin-top", "4px");
             if (model.tooltipConfiguration != null) inputsContainer.MergeAttributes(model.tooltipConfiguration.ToDictionary());
+            if (model.tooltip != null) inputsContainer.MergeAttributes(model.tooltip.ToDictionary());
 
             string fullHtmlFieldName = html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(model.htmlFieldName);
 

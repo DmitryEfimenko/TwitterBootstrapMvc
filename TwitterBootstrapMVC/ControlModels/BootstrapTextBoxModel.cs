@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using TwitterBootstrapMVC.Controls;
 
@@ -40,5 +36,7 @@ namespace TwitterBootstrapMVC.ControlModels
         public HelpTextStyle validationMessageStyle;
         public ModelMetadata metadata;
         public TooltipConfiguration tooltipConfiguration;
+        public Tooltip tooltip;
+        public Typehead typehead;
     }
 }

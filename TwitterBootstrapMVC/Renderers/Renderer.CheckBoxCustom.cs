@@ -13,6 +13,7 @@ namespace TwitterBootstrapMVC.Renderers
 
             model.htmlAttributes.MergeHtmlAttributes(html.GetUnobtrusiveValidationAttributes(model.htmlFieldName, model.metadata));
             if (model.tooltipConfiguration != null) model.htmlAttributes.MergeHtmlAttributes(model.tooltipConfiguration.ToDictionary());
+            if (model.tooltip != null) model.htmlAttributes.MergeHtmlAttributes(model.tooltip.ToDictionary());
             
             ModelState modelState;
             if (html.ViewData.ModelState.TryGetValue(fullHtmlFieldName, out modelState))

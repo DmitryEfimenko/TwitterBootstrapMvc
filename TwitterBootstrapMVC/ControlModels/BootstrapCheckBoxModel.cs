@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace TwitterBootstrapMVC.ControlModels
@@ -24,6 +20,7 @@ namespace TwitterBootstrapMVC.ControlModels
         public HelpTextStyle validationMessageStyle;
         public ModelMetadata metadata;
         public TooltipConfiguration tooltipConfiguration;
+        public Tooltip tooltip;
 
         //properties for a custom checkbox
         public object value;

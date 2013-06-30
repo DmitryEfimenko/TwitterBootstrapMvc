@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Web;
 
 namespace TwitterBootstrapMVC.ControlInterfaces
@@ -16,6 +14,7 @@ namespace TwitterBootstrapMVC.ControlInterfaces
         IBootstrapFile HelpText(string text);
         IBootstrapFile HelpText(string text, HelpTextStyle style);
         IBootstrapFile Tooltip(TooltipConfiguration configuration);
+        IBootstrapFile Tooltip(Tooltip tooltip);
         IBootstrapFile Tooltip(string text);
         IBootstrapFile ShowValidationMessage(bool displayValidationMessage);
         IBootstrapFile ShowValidationMessage(bool displayValidationMessage, HelpTextStyle validationMessageStyle);

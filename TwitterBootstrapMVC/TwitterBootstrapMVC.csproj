@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\TwitterBootstrapMVC.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\TwitterBootstrapMVC.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -162,6 +164,8 @@
     <Compile Include="Controls\TabsPanel.cs" />
     <Compile Include="Controls\ToolBar.cs" />
     <Compile Include="Controls\ToolBarBuilder.cs" />
+    <Compile Include="Controls\Tooltip.cs" />
+    <Compile Include="Controls\Typehead.cs" />
     <Compile Include="Infrastructure\BootstrapHelper.cs" />
     <Compile Include="Infrastructure\BuilderBase.cs" />
     <Compile Include="Infrastructure\ConfigurationClasses\PopoverConfiguration.cs" />

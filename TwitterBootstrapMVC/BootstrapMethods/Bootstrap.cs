@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Web.Mvc;
-using System.Web.Mvc.Html;
 using TwitterBootstrapMVC.Controls;
 
 namespace TwitterBootstrapMVC.BootstrapMethods
@@ -34,7 +29,7 @@ namespace TwitterBootstrapMVC.BootstrapMethods
             return new BootstrapDropDownMenu();
         }
 
-        [Obsolete("Container() is deprecated, please use Begin() instead.")]
+        [Obsolete("Container() is deprecated and will be removed in the future versions, please use Begin() instead.")]
         public BootstrapContainer Container()
         {
             return new BootstrapContainer(Html);

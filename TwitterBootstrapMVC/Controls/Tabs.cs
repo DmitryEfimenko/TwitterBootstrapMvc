@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using TwitterBootstrapMVC.Infrastructure;
 
 namespace TwitterBootstrapMVC
@@ -14,6 +10,9 @@ namespace TwitterBootstrapMVC
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NavType Type { get; set; }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int _activeTabIndex { get; set; }
 
         public Tabs(string id)
             : base("div")
@@ -37,6 +36,12 @@ namespace TwitterBootstrapMVC
                     EnsureClass("tabs-below");
                     break;
             }
+            return this;
+        }
+
+        public Tabs ActiveTab(int activeTabIndex)
+        {
+            _activeTabIndex = activeTabIndex;
             return this;
         }
 

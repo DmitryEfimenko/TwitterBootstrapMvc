@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
-using System.Web.Mvc;
 using TwitterBootstrapMVC.Controls;
 
 namespace TwitterBootstrapMVC.ControlInterfaces
@@ -26,6 +22,7 @@ namespace TwitterBootstrapMVC.ControlInterfaces
         IBootstrapDropDownList HelpText(string text, HelpTextStyle style);
         IBootstrapDropDownList Size(InputSize size);
         IBootstrapDropDownList Tooltip(TooltipConfiguration configuration);
+        IBootstrapDropDownList Tooltip(Tooltip tooltip);
         IBootstrapDropDownList Tooltip(string text);
         IBootstrapDropDownList ShowValidationMessage(bool displayValidationMessage);
         IBootstrapDropDownList ShowValidationMessage(bool displayValidationMessage, HelpTextStyle validationMessageStyle);
