@@ -28,4 +28,3 @@ obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 #Ignore misc files
-*.nupkg

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
 using System.Web.Mvc;
 
@@ -25,9 +26,22 @@ namespace TwitterBootstrapMVC.Controls
             this.textWriter.Write(builder.ToString(TagRenderMode.StartTag));
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Dispose()
         {
             this.textWriter.Write("</{0}>", this._tag);
         }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override string ToString() { return base.ToString(); }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object obj) { return base.Equals(obj); }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() { return base.GetHashCode(); }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new Type GetType() { return base.GetType(); }
     }
 }
