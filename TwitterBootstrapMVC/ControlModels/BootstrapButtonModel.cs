@@ -26,5 +26,6 @@ namespace TwitterBootstrapMVC.ControlModels
         public string iconPrependCustomClass;
         public string iconAppendCustomClass;
         public bool isDropDownToggle;
+        public string loadingText;
     }
 }
