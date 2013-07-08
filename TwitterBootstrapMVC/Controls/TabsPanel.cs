@@ -7,29 +7,29 @@ namespace TwitterBootstrapMVC.Controls
 {
     public class TabsPanel : IDisposable
     {
-        private readonly TextWriter textWriter;
-        private string _tag;
+        private readonly TextWriter _textWriter;
+        private readonly string _tag;
 
         internal TabsPanel(TextWriter writer, string tag, string id, bool isActive = false)
         {
             if (string.IsNullOrWhiteSpace(tag)) throw new ArgumentNullException("tag");
             if (string.IsNullOrWhiteSpace(id)) throw new ArgumentNullException("id");
 
-            this.textWriter = writer;
-            this._tag = tag;
-            TagBuilder builder = new TagBuilder(this._tag);
+            _textWriter = writer;
+            _tag = tag;
+            var builder = new TagBuilder(_tag);
             builder.Attributes.Add("id", id);
             builder.AddCssClass("tab-pane");
 
             if (isActive) builder.AddCssClass("active");
 
-            this.textWriter.Write(builder.ToString(TagRenderMode.StartTag));
+            _textWriter.Write(builder.ToString(TagRenderMode.StartTag));
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Dispose()
         {
-            this.textWriter.Write("</{0}>", this._tag);
+            this._textWriter.Write("</{0}>", this._tag);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

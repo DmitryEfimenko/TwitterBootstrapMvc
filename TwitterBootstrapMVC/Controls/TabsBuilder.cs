@@ -10,7 +10,7 @@ namespace TwitterBootstrapMVC.Controls
     {
         private int _tabIndex;
         private int _panelIndex;
-        private Queue<string> _tabIds;
+        private readonly Queue<string> _tabIds;
         private bool _isFirstTab = true;
         private int _activeTabIndex;
         private bool _isHeaderClosed;
@@ -19,18 +19,18 @@ namespace TwitterBootstrapMVC.Controls
             : base(htmlHelper, tabs)
         {
             _tabIndex = 1;
-            _activeTabIndex = base.element._activeTabIndex;
-            this._tabIds = new Queue<string>();
-            switch (base.element.Type)
+            _activeTabIndex = element._activeTabIndex;
+            _tabIds = new Queue<string>();
+            switch (element.Type)
             {
                 case NavType.Pills:
-                    base.textWriter.Write(@"<ul class=""nav nav-pills"">");
+                    textWriter.Write(@"<ul class=""nav nav-pills"">");
                     break;
                 case NavType.List:
-                    base.textWriter.Write(@"<ul class=""nav nav-list"">");
+                    textWriter.Write(@"<ul class=""nav nav-list"">");
                     break;
                 default:
-                    base.textWriter.Write(@"<ul class=""nav nav-tabs"">");
+                    textWriter.Write(@"<ul class=""nav nav-tabs"">");
                     break;
             }
         }
@@ -40,18 +40,18 @@ namespace TwitterBootstrapMVC.Controls
             if (string.IsNullOrWhiteSpace(label))
                 throw new ArgumentNullException("label");
 
-            string tabId = base.element._id + "-" + _tabIndex;
-            this._tabIds.Enqueue(tabId);
+            var tabId = base.element._id + "-" + _tabIndex;
+            _tabIds.Enqueue(tabId);
             
             if (_isFirstTab)
             {
                 if (_activeTabIndex == 0) _activeTabIndex = 1;
-                this.WriteTab(label, tabId, _tabIndex == _activeTabIndex);
+                WriteTab(label, tabId, _tabIndex == _activeTabIndex);
                 _isFirstTab = false;
             }
             else
             {
-                this.WriteTab(label, tabId, _tabIndex == _activeTabIndex);
+                WriteTab(label, tabId, _tabIndex == _activeTabIndex);
             }
 
             _tabIndex++;
@@ -60,21 +60,21 @@ namespace TwitterBootstrapMVC.Controls
         public TabsPanel BeginPanel()
         {
             _panelIndex++;
-            if (!this._isHeaderClosed)
+            if (!_isHeaderClosed)
             {
-                base.textWriter.Write("</ul>");
-                this._isHeaderClosed = true;
+                textWriter.Write("</ul>");
+                _isHeaderClosed = true;
             }
 
-            string tabId = this._tabIds.Dequeue();
+            var tabId = _tabIds.Dequeue();
             if (_panelIndex == 1)
             {
-                base.textWriter.Write(@"<div class=""tab-content"">");
+                textWriter.Write(@"<div class=""tab-content"">");
                 _isFirstTab = false;
-                return new TabsPanel(base.textWriter, "div", tabId, true);
+                return new TabsPanel(textWriter, "div", tabId, _panelIndex == _activeTabIndex);
             }
 
-            return new TabsPanel(base.textWriter, "div", tabId);
+            return new TabsPanel(base.textWriter, "div", tabId, _panelIndex == _activeTabIndex);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -84,7 +84,7 @@ namespace TwitterBootstrapMVC.Controls
             if (_tabIds.Count > 0) throw new ArgumentNullException("BeginPanel", "The number of panels should be the same as the number of tabs.");
 
             // Close Tab Content Div:
-            base.textWriter.Write("</div>");
+            textWriter.Write("</div>");
             base.Dispose();
         }
 

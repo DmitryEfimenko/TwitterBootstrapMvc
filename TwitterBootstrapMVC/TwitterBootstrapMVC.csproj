@@ -201,6 +201,7 @@
     <Compile Include="Renderers\Renderer.ControlGroup.RadioButton.cs" />
     <Compile Include="Renderers\Renderer.ControlGroup.TextArea.cs" />
     <Compile Include="Renderers\Renderer.ControlGroup.TextBox.cs" />
+    <Compile Include="Renderers\Renderer.RenderValidationSummary.cs" />
     <Compile Include="Renderers\Renderer.SelectElement.cs" />
     <Compile Include="Renderers\Renderer.InputListContainer.cs" />
     <Compile Include="Renderers\Renderer.InputListFromEnum.cs" />

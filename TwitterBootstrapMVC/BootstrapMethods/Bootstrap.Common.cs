@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
 using TwitterBootstrapMVC.Controls;
 using TwitterBootstrapMVC.Infrastructure.Enums;
 
@@ -102,6 +103,16 @@ namespace TwitterBootstrapMVC.BootstrapMethods
         public BootstrapButton Button()
         {
             return new BootstrapButton("button");
+        }
+
+        public MvcHtmlString ValidationSummary()
+        {
+            return Renderers.Renderer.RenderValidationSummary(Html, true);
+        }
+
+        public MvcHtmlString ValidationSummary(bool closeable)
+        {
+            return Renderers.Renderer.RenderValidationSummary(Html, closeable);
         }
 
         public BootstrapInputList<TModel, TSource, SValue, SText> CheckBoxList<TSource, SValue, SText>(
