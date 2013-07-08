@@ -12,7 +12,7 @@ namespace TwitterBootstrapMVC.Renderers
     {
         public static string RenderTextBox(HtmlHelper html, BootstrapTextBoxModel model, bool isPassword)
         {
-            string combinedHtml = "{0}{1}{2}";
+            var combinedHtml = "{0}{1}{2}";
 
             model.htmlAttributes.MergeHtmlAttributes(html.GetUnobtrusiveValidationAttributes(model.htmlFieldName, model.metadata));
             
@@ -39,15 +39,15 @@ namespace TwitterBootstrapMVC.Renderers
                 !string.IsNullOrEmpty(model.iconPrependCustomClass) ||
                 !string.IsNullOrEmpty(model.iconAppendCustomClass))
             {
-                TagBuilder appendPrependContainer = new TagBuilder("div");
-                string addOnPrependString = "";
-                string addOnAppendString = "";
-                string addOnPrependButtons = "";
-                string addOnAppendButtons = "";
-                string addOnPrependIcon = "";
-                string addOnAppendIcon = "";
+                var appendPrependContainer = new TagBuilder("div");
+                var addOnPrependString = "";
+                var addOnAppendString = "";
+                var addOnPrependButtons = "";
+                var addOnAppendButtons = "";
+                var addOnPrependIcon = "";
+                var addOnAppendIcon = "";
 
-                TagBuilder addOn = new TagBuilder("span");
+                var addOn = new TagBuilder("span");
                 addOn.AddCssClass("add-on");
                 if (!string.IsNullOrEmpty(model.prependString))
                 {
@@ -61,12 +61,12 @@ namespace TwitterBootstrapMVC.Renderers
                     addOn.InnerHtml = model.appendString;
                     addOnAppendString = addOn.ToString();
                 }
-                if (model.prependButtons.Count() > 0)
+                if (model.prependButtons.Count > 0)
                 {
                     appendPrependContainer.AddOrMergeCssClass("input-prepend");
                     model.prependButtons.ForEach(x => addOnPrependButtons += x.ToHtmlString());
                 }
-                if (model.appendButtons.Count() > 0)
+                if (model.appendButtons.Count > 0)
                 {
                     appendPrependContainer.AddOrMergeCssClass("input-append");
                     model.appendButtons.ForEach(x => addOnAppendButtons += x.ToHtmlString());
@@ -104,11 +104,11 @@ namespace TwitterBootstrapMVC.Renderers
                 combinedHtml = appendPrependContainer.ToString(TagRenderMode.Normal) + "{1}{2}";
             }
 
-            string helpText = model.helpText != null ? model.helpText.ToHtmlString() : string.Empty;
-            string validationMessage = "";
+            var helpText = model.helpText != null ? model.helpText.ToHtmlString() : string.Empty;
+            var validationMessage = "";
             if(model.displayValidationMessage)
             {
-                string validation = html.ValidationMessage(model.htmlFieldName).ToHtmlString();
+                var validation = html.ValidationMessage(model.htmlFieldName).ToHtmlString();
                 validationMessage = new BootstrapHelpText(validation, model.validationMessageStyle).ToHtmlString();
             }
 

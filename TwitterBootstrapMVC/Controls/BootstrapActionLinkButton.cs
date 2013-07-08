@@ -201,7 +201,7 @@ namespace TwitterBootstrapMVC.Controls
                 {
                     var i = new TagBuilder("i");
                     i.AddCssClass(_model.iconAppendCustomClass);
-                    iPrependString = i.ToString(TagRenderMode.Normal);
+                    iAppendString = i.ToString(TagRenderMode.Normal);
                 }
 
                 var combined = 
