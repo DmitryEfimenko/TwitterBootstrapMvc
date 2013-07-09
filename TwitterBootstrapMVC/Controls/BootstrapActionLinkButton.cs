@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
-using TwitterBootstrapMVC.ControlInterfaces;
-using TwitterBootstrapMVC.ControlModels;
 using TwitterBootstrapMVC.Infrastructure;
 using TwitterBootstrapMVC.Infrastructure.Enums;
 using TwitterBootstrapMVC.TypeExtensions;
@@ -29,9 +24,11 @@ namespace TwitterBootstrapMVC.Controls
         private string _protocol;
         private string _hostName;
         private string _fragment;
+        private string _title;
         private AjaxOptions _ajaxOptions;
         private RouteValueDictionary _routeValues;
         private ActionTypePassed _actionTypePassed;
+
 
         public BootstrapActionLinkButton(HtmlHelper html, string linkText, ActionResult result)
             : base("")
@@ -169,12 +166,18 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
+        public BootstrapActionLinkButton Title(string title)
+        {
+            this._title = title;
+            return this;
+        }
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ToHtmlString()
         {
             var mergedHtmlAttributes = _model.htmlAttributes;
             mergedHtmlAttributes.AddOrMergeCssClass("class", "btn");
-            if(!string.IsNullOrEmpty(_model.id)) mergedHtmlAttributes.AddIfNotExist("id", _model.id);
+            if (!string.IsNullOrEmpty(_model.id)) mergedHtmlAttributes.AddIfNotExist("id", _model.id);
 
             mergedHtmlAttributes.AddOrMergeCssClass("class", BootstrapHelper.GetClassForButtonSize(_model.size));
             mergedHtmlAttributes.AddOrMergeCssClass("class", BootstrapHelper.GetClassForButtonStyle(_model.style));
@@ -186,11 +189,13 @@ namespace TwitterBootstrapMVC.Controls
                 mergedHtmlAttributes.AddIfNotExist("data-toggle", "dropdown");
             }
             if (_model.disabled) mergedHtmlAttributes.AddOrMergeCssClass("class", "disabled");
+            if (!string.IsNullOrWhiteSpace(_title)) mergedHtmlAttributes.Add("title", _title);
+
 
             var input = string.Empty;
             if (_model.iconPrepend != Icons._not_set || _model.iconAppend != Icons._not_set || !string.IsNullOrEmpty(_model.iconPrependCustomClass) || !string.IsNullOrEmpty(_model.iconAppendCustomClass))
             {
-                
+
                 string iPrependString = string.Empty;
                 string iAppendString = string.Empty;
                 if (_model.iconPrepend != Icons._not_set) iPrependString = new BootstrapIcon(_model.iconPrepend, _model.iconPrependIsWhite).ToHtmlString();
@@ -208,7 +213,7 @@ namespace TwitterBootstrapMVC.Controls
                     iPrependString = i.ToString(TagRenderMode.Normal);
                 }
 
-                string combined = 
+                string combined =
                     iPrependString +
                     (!string.IsNullOrEmpty(iPrependString) && (!string.IsNullOrEmpty(_model.text) || !string.IsNullOrEmpty(iAppendString)) ? " " : "") +
                     _model.text +
@@ -224,7 +229,7 @@ namespace TwitterBootstrapMVC.Controls
             {
                 input = GenerateActionLink(_model.text, mergedHtmlAttributes);
             }
-            
+
             return MvcHtmlString.Create(input).ToString();
         }
 
