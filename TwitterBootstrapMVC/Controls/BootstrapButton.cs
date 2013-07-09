@@ -183,8 +183,8 @@ namespace TwitterBootstrapMVC.Controls
 
             if (_model.iconPrepend != Icons._not_set || _model.iconAppend != Icons._not_set || !string.IsNullOrEmpty(_model.iconPrependCustomClass) || !string.IsNullOrEmpty(_model.iconAppendCustomClass))
             {
-                string iPrependString = string.Empty;
-                string iAppendString = string.Empty;
+                var iPrependString = string.Empty;
+                var iAppendString = string.Empty;
                 if (_model.iconPrepend != Icons._not_set) iPrependString = new BootstrapIcon(_model.iconPrepend, _model.iconPrependIsWhite).ToHtmlString();
                 if (_model.iconAppend != Icons._not_set) iAppendString = new BootstrapIcon(_model.iconAppend, _model.iconAppendIsWhite).ToHtmlString();
                 if (!string.IsNullOrEmpty(_model.iconPrependCustomClass))
