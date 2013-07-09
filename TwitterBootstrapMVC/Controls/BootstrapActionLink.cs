@@ -27,7 +27,7 @@ namespace TwitterBootstrapMVC.Controls
         private string _protocol;
         private string _hostName;
         private string _fragment;
-        private IDictionary<string, object> _htmlAttributes;
+        private IDictionary<string, object> _htmlAttributes = new Dictionary<string, object>();
         private bool _disabled;
         private bool _isDropDownToggle;
         private RouteValueDictionary _routeValues;
@@ -38,6 +38,7 @@ namespace TwitterBootstrapMVC.Controls
         private string _iconPrependCustomClass;
         private string _iconAppendCustomClass;
         private string _wrapTag;
+        private string _title;
         private readonly ActionTypePassed _actionTypePassed;
 
         public BootstrapActionLink(HtmlHelper html, string linkText, ActionResult result)
@@ -214,6 +215,12 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
+        public BootstrapActionLink Title(string title)
+        {
+            this._title = title;
+            return this;
+        }
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public BootstrapActionLink WrapInto(string tag)
         {
@@ -233,6 +240,7 @@ namespace TwitterBootstrapMVC.Controls
                 mergedHtmlAttributes.AddIfNotExist("data-toggle", "dropdown");
             }
             if (_disabled) mergedHtmlAttributes.AddOrMergeCssClass("class", "disabled");
+            if (!string.IsNullOrEmpty(_title)) mergedHtmlAttributes.AddOrReplace("title", _title);
 
             var input = string.Empty;
             var iPrependString = string.Empty;
@@ -282,6 +290,7 @@ namespace TwitterBootstrapMVC.Controls
             input = string.Format(input, iPrependString, iAppendString);
 
             if (!string.IsNullOrEmpty(_wrapTag)) input = string.Format("<{0}>{1}</{0}>", _wrapTag, input);
+
 
             return MvcHtmlString.Create(input).ToString();
         }

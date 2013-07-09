@@ -24,9 +24,11 @@ namespace TwitterBootstrapMVC.Controls
         private string _protocol;
         private string _hostName;
         private string _fragment;
+        private string _title;
         private AjaxOptions _ajaxOptions;
         private RouteValueDictionary _routeValues;
         private ActionTypePassed _actionTypePassed;
+
 
         public BootstrapActionLinkButton(HtmlHelper html, string linkText, ActionResult result)
             : base("")
@@ -164,12 +166,18 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
+        public BootstrapActionLinkButton Title(string title)
+        {
+            this._title = title;
+            return this;
+        }
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ToHtmlString()
         {
             var mergedHtmlAttributes = _model.htmlAttributes;
             mergedHtmlAttributes.AddOrMergeCssClass("class", "btn");
-            if(!string.IsNullOrEmpty(_model.id)) mergedHtmlAttributes.AddIfNotExist("id", _model.id);
+            if (!string.IsNullOrEmpty(_model.id)) mergedHtmlAttributes.AddIfNotExist("id", _model.id);
 
             mergedHtmlAttributes.AddOrMergeCssClass("class", BootstrapHelper.GetClassForButtonSize(_model.size));
             mergedHtmlAttributes.AddOrMergeCssClass("class", BootstrapHelper.GetClassForButtonStyle(_model.style));
@@ -182,13 +190,14 @@ namespace TwitterBootstrapMVC.Controls
             }
             if (_model.disabled) mergedHtmlAttributes.AddOrMergeCssClass("class", "disabled");
             if (!string.IsNullOrEmpty(_model.loadingText)) mergedHtmlAttributes.AddOrReplace("data-loading-text", _model.loadingText);
+            if (!string.IsNullOrWhiteSpace(_title)) mergedHtmlAttributes.Add("title", _title);
 
             var input = string.Empty;
             if (_model.iconPrepend != Icons._not_set || _model.iconAppend != Icons._not_set || !string.IsNullOrEmpty(_model.iconPrependCustomClass) || !string.IsNullOrEmpty(_model.iconAppendCustomClass))
             {
-                
                 var iPrependString = string.Empty;
                 var iAppendString = string.Empty;
+
                 if (_model.iconPrepend != Icons._not_set) iPrependString = new BootstrapIcon(_model.iconPrepend, _model.iconPrependIsWhite).ToHtmlString();
                 if (_model.iconAppend != Icons._not_set) iAppendString = new BootstrapIcon(_model.iconAppend, _model.iconAppendIsWhite).ToHtmlString();
                 if (!string.IsNullOrEmpty(_model.iconPrependCustomClass))
@@ -220,14 +229,14 @@ namespace TwitterBootstrapMVC.Controls
             {
                 input = GenerateActionLink(_model.text, mergedHtmlAttributes);
             }
-            
+
             return MvcHtmlString.Create(input).ToString();
         }
 
         private string GenerateActionLink(string linkText, IDictionary<string, object> htmlAttributes)
         {
-            string input = string.Empty;
-            switch (this._actionTypePassed)
+            var input = string.Empty;
+            switch (_actionTypePassed)
             {
                 case ActionTypePassed.HtmlRegular:
                     input = html.ActionLink(linkText, _actionName, _controllerName, _protocol, _hostName, _fragment, _routeValues, htmlAttributes).ToHtmlString();
@@ -246,8 +255,6 @@ namespace TwitterBootstrapMVC.Controls
                     break;
                 case ActionTypePassed.AjaxTaskResult:
                     input = ajax.ActionLink(linkText, _taskResult, _ajaxOptions, htmlAttributes).ToHtmlString();
-                    break;
-                default:
                     break;
             }
             return input;
