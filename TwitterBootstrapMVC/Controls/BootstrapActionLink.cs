@@ -254,13 +254,13 @@ namespace TwitterBootstrapMVC.Controls
                 {
                     var i = new TagBuilder("i");
                     i.AddCssClass(_iconPrependCustomClass);
-                    iPrependString = i.ToString(TagRenderMode.Normal);
+                    iPrependString = i.ToString(TagRenderMode.Normal) + " ";
                 }
                 if (!string.IsNullOrEmpty(_iconAppendCustomClass))
                 {
                     var i = new TagBuilder("i");
                     i.AddCssClass(_iconAppendCustomClass);
-                    iAppendString = i.ToString(TagRenderMode.Normal);
+                    iAppendString = " " + i.ToString(TagRenderMode.Normal);
                 }
                 _linkText = "{0}" + _linkText + "{1}";
             }
