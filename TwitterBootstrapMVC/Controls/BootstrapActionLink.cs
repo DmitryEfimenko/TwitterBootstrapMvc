@@ -14,16 +14,16 @@ namespace TwitterBootstrapMVC.Controls
 {
     public class BootstrapActionLink : IHtmlString
     {
-        private HtmlHelper html;
-        private AjaxHelper ajax;
-        private ActionResult _result;
-        private Task<ActionResult> _taskResult;
-        private AjaxOptions _ajaxOptions;
+        private readonly HtmlHelper html;
+        private readonly AjaxHelper ajax;
+        private readonly ActionResult _result;
+        private readonly Task<ActionResult> _taskResult;
+        private readonly AjaxOptions _ajaxOptions;
         private string _linkText;
         private string _id;
         private string _routeName;
-        private string _actionName;
-        private string _controllerName;
+        private readonly string _actionName;
+        private readonly string _controllerName;
         private string _protocol;
         private string _hostName;
         private string _fragment;
@@ -38,6 +38,8 @@ namespace TwitterBootstrapMVC.Controls
         private string _iconPrependCustomClass;
         private string _iconAppendCustomClass;
         private string _wrapTag;
+        private bool _wrapTagControllerAware;
+        private bool _wrapTagControllerAndActionAware;
         private string _title;
         private readonly ActionTypePassed _actionTypePassed;
 
@@ -229,6 +231,20 @@ namespace TwitterBootstrapMVC.Controls
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public BootstrapActionLink WrapTagControllerAware(bool aware)
+        {
+            this._wrapTagControllerAware = aware;
+            return this;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public BootstrapActionLink WrapTagControllerAndActionAware(bool aware)
+        {
+            this._wrapTagControllerAndActionAware = aware;
+            return this;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string ToHtmlString()
         {
             var mergedHtmlAttributes = _htmlAttributes;
@@ -265,32 +281,54 @@ namespace TwitterBootstrapMVC.Controls
                 _linkText = "{0}" + _linkText + "{1}";
             }
 
+            var requestedController = "";
+            var requestedAction = "";
+
             switch (_actionTypePassed)
             {
                 case ActionTypePassed.HtmlRegular:
+                    requestedController = string.IsNullOrEmpty(_controllerName) ? html.ViewContext.RouteData.GetRequiredString("controller") : _controllerName;
+                    requestedAction = _actionName;
                     input = html.ActionLink(_linkText, _actionName, _controllerName, _protocol, _hostName, _fragment, _routeValues, mergedHtmlAttributes).ToHtmlString();
                     break;
                 case ActionTypePassed.HtmlActionResult:
+                    requestedController = _result.GetRouteValueDictionary()["controller"].ToString();
+                    requestedAction = _result.GetRouteValueDictionary()["action"].ToString();
                     input = html.ActionLink(_linkText, _result, mergedHtmlAttributes, _protocol, _hostName, _fragment).ToHtmlString();
                     break;
                 case ActionTypePassed.HtmlTaskResult:
+                    requestedController = _taskResult.Result.GetRouteValueDictionary()["controller"].ToString();
+                    requestedAction = _taskResult.Result.GetRouteValueDictionary()["action"].ToString();
                     input = html.ActionLink(_linkText, _taskResult, mergedHtmlAttributes, _protocol, _hostName, _fragment).ToHtmlString();
                     break;
                 case ActionTypePassed.AjaxRegular:
+                    requestedController = string.IsNullOrEmpty(_controllerName) ? html.ViewContext.RouteData.GetRequiredString("controller") : _controllerName;
+                    requestedAction = _actionName;
                     input = ajax.ActionLink(_linkText, _actionName, _controllerName, _protocol, _hostName, _fragment, _routeValues, _ajaxOptions, mergedHtmlAttributes).ToHtmlString();
                     break;
                 case ActionTypePassed.AjaxActionResult:
+                    requestedController = _result.GetRouteValueDictionary()["controller"].ToString();
+                    requestedAction = _result.GetRouteValueDictionary()["action"].ToString();
                     input = ajax.ActionLink(_linkText, _result, _ajaxOptions, mergedHtmlAttributes).ToHtmlString();
                     break;
                 case ActionTypePassed.AjaxTaskResult:
+                    requestedController = _taskResult.Result.GetRouteValueDictionary()["controller"].ToString();
+                    requestedAction = _taskResult.Result.GetRouteValueDictionary()["action"].ToString();
                     input = ajax.ActionLink(_linkText, _taskResult, _ajaxOptions, mergedHtmlAttributes).ToHtmlString();
                     break;
             }
 
             input = string.Format(input, iPrependString, iAppendString);
 
-            if (!string.IsNullOrEmpty(_wrapTag)) input = string.Format("<{0}>{1}</{0}>", _wrapTag, input);
-
+            if (!string.IsNullOrEmpty(_wrapTag))
+            {
+                var currentAction = html.ViewContext.RouteData.GetRequiredString("action");
+                var currentController = html.ViewContext.RouteData.GetRequiredString("controller");
+                var classActive = "";
+                if (_wrapTagControllerAware && currentController == requestedController) classActive = @" class=""active""";
+                if (_wrapTagControllerAndActionAware && currentController == requestedController && currentAction == requestedAction) classActive = @" class=""active""";
+                input = string.Format("<{0}{1}>{2}</{0}>", _wrapTag, classActive, input);
+            }
 
             return MvcHtmlString.Create(input).ToString();
         }

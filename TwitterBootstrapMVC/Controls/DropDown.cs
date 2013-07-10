@@ -8,6 +8,12 @@ namespace TwitterBootstrapMVC
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string _actionText;
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool _activeLinksByController;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool _activeLinksByControllerAndAction;
+
         public DropDown(string actionText)
             : base(null)
         {
