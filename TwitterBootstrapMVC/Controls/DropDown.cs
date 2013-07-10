@@ -17,7 +17,19 @@ namespace TwitterBootstrapMVC
         public DropDown(string actionText)
             : base(null)
         {
-            this._actionText = actionText;
+            _actionText = actionText;
+        }
+
+        public DropDown SetLinksActiveByController()
+        {
+            _activeLinksByController = true;
+            return this;
+        }
+
+        public DropDown SetLinksActiveByControllerAndAction()
+        {
+            _activeLinksByControllerAndAction = true;
+            return this;
         }
     }
 }
