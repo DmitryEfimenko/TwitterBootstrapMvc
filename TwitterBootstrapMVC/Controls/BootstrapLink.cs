@@ -18,6 +18,8 @@ namespace TwitterBootstrapMVC.Controls
         private Icons _iconAppend;
         private bool _iconPrependIsWhite;
         private bool _iconAppendIsWhite;
+        private string _iconPrependCustomClass;
+        private string _iconAppendCustomClass;
         private string _wrapTag;
 
         public BootstrapLink(HtmlHelper html, string linkText, string url)
@@ -63,6 +65,12 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
+        public BootstrapLink IconPrepend(string customCssClass)
+        {
+            this._iconPrependCustomClass = customCssClass;
+            return this;
+        }
+
         public BootstrapLink IconAppend(Icons icon)
         {
             this._iconAppend = icon;
@@ -73,6 +81,12 @@ namespace TwitterBootstrapMVC.Controls
         {
             this._iconAppend = icon;
             this._iconAppendIsWhite = isWhite;
+            return this;
+        }
+
+        public BootstrapLink IconAppend(string customCssClass)
+        {
+            this._iconAppendCustomClass = customCssClass;
             return this;
         }
 
@@ -94,13 +108,25 @@ namespace TwitterBootstrapMVC.Controls
             linkBuilder.MergeAttributes(mergedHtmlAttributes);
             linkBuilder.MergeAttribute("href", _url);
 
-            if (this._iconPrepend != Icons._not_set || this._iconAppend != Icons._not_set)
+            if (_iconPrepend != Icons._not_set || _iconAppend != Icons._not_set || !string.IsNullOrEmpty(_iconPrependCustomClass) || !string.IsNullOrEmpty(_iconAppendCustomClass))
             {
-                string iPrependString = string.Empty;
-                string iAppendString = string.Empty;
+                var iPrependString = string.Empty;
+                var iAppendString = string.Empty;
 
-                if (this._iconPrepend != Icons._not_set) iPrependString = new BootstrapIcon(this._iconPrepend, this._iconPrependIsWhite).ToHtmlString() + " ";
-                if (this._iconAppend != Icons._not_set) iAppendString = " " + new BootstrapIcon(this._iconAppend, this._iconAppendIsWhite).ToHtmlString();
+                if (_iconPrepend != Icons._not_set) iPrependString = new BootstrapIcon(_iconPrepend, _iconPrependIsWhite).ToHtmlString() + " ";
+                if (_iconAppend != Icons._not_set) iAppendString = " " + new BootstrapIcon(_iconAppend, _iconAppendIsWhite).ToHtmlString();
+                if (!string.IsNullOrEmpty(_iconPrependCustomClass))
+                {
+                    var i = new TagBuilder("i");
+                    i.AddCssClass(_iconPrependCustomClass);
+                    iPrependString = i.ToString(TagRenderMode.Normal) + " ";
+                }
+                if (!string.IsNullOrEmpty(_iconAppendCustomClass))
+                {
+                    var i = new TagBuilder("i");
+                    i.AddCssClass(_iconAppendCustomClass);
+                    iAppendString = " " + i.ToString(TagRenderMode.Normal);
+                }
 
                 _linkText = iPrependString + _linkText + iAppendString;
             }
@@ -108,7 +134,7 @@ namespace TwitterBootstrapMVC.Controls
             linkBuilder.InnerHtml = _linkText;
 
             string input = linkBuilder.ToString(TagRenderMode.Normal);
-            if (!string.IsNullOrEmpty(this._wrapTag)) input = string.Format("<{0}>{1}</{0}>", this._wrapTag, input);
+            if (!string.IsNullOrEmpty(_wrapTag)) input = string.Format("<{0}>{1}</{0}>", _wrapTag, input);
 
             return MvcHtmlString.Create(input).ToString();
         }
