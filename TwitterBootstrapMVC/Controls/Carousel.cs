@@ -20,6 +20,9 @@ namespace TwitterBootstrapMVC
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool _withJs { get; set; }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint _indicators { get; set; }
+
         public Carousel(string id)
             : base("div")
         {
@@ -49,6 +52,12 @@ namespace TwitterBootstrapMVC
         {
             this._interval = interval;
             EnsureHtmlAttribute("data-interval", interval.ToString());
+            return this;
+        }
+
+        public Carousel Indicators(uint num)
+        {
+            this._indicators = num;
             return this;
         }
 
