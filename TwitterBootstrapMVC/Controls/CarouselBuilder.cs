@@ -14,7 +14,24 @@ namespace TwitterBootstrapMVC.Controls
             : base(htmlHelper, carousel)
         {
             this.urlHelper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
+            if (carousel._indicators != 0)
+            {
+                Indicators(carousel._indicators);
+            }
             base.textWriter.Write(@"<div class=""carousel-inner"">");
+        }
+
+        void Indicators(uint num)
+        {
+            base.textWriter.Write(@"<ol class=""carousel-indicators"">");
+            for(int i = 0; i < num; i++)
+            {
+                base.textWriter.Write(string.Format(@"<li data-target=""#{0}"" data-slide-to=""{1}""", base.element._id, i));
+                if (i == 0)
+                     base.textWriter.Write(@" class=""active""");
+                base.textWriter.Write(@"></li>");
+            }
+            base.textWriter.Write(@"</ol>");
         }
 
         public void Image(string url, string altText, object htmlAttributes = null)
