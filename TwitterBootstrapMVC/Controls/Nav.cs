@@ -14,12 +14,11 @@ namespace TwitterBootstrapMVC
         public Nav()
             : base("ul")
         {
-            EnsureClass("nav nav-tabs");
+            EnsureClass("nav");
         }
 
         public Nav Style(NavType type)
         {
-            EnsureClassRemoval("nav-tabs");
             switch (type)
             {
                 case NavType.Tabs:
