@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using TwitterBootstrapMVC.Infrastructure;
 
 namespace TwitterBootstrapMVC
@@ -10,6 +11,9 @@ namespace TwitterBootstrapMVC
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool _activeLinksByControllerAndAction;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool _activeLinksByAreaControllerAction;
 
         public Nav()
             : base("ul")
@@ -49,6 +53,24 @@ namespace TwitterBootstrapMVC
         public Nav SetLinksActiveByControllerAndAction()
         {
             _activeLinksByControllerAndAction = true;
+            return this;
+        }
+
+        public Nav SetLinksActiveByAreaControllerAction()
+        {
+            _activeLinksByAreaControllerAction = true;
+            return this;
+        }
+
+        public Nav HtmlAttributes(IDictionary<string, object> htmlAttributes)
+        {
+            SetHtmlAttributes(htmlAttributes);
+            return this;
+        }
+
+        public Nav HtmlAttributes(object htmlAttributes)
+        {
+            SetHtmlAttributes(htmlAttributes);
             return this;
         }
     }

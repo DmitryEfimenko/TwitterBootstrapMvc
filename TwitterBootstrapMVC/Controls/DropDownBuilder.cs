@@ -11,12 +11,14 @@ namespace TwitterBootstrapMVC.Controls
         private string wrapperTag;
         private bool _wrapTagControllerAware;
         private bool _wrapTagControllerAndActionAware;
+        private bool _wrapTagAreaControllerActionAware;
 
         internal DropDownBuilder(HtmlHelper<TModel> htmlHelper, DropDown dropDown, string wrapperTag = null, object wrapperTagHtmlAttributes = null)
             : base(htmlHelper, dropDown)
         {
             if (dropDown._activeLinksByController) _wrapTagControllerAware = true;
             if (dropDown._activeLinksByControllerAndAction) _wrapTagControllerAndActionAware = true;
+            if (dropDown._activeLinksByAreaControllerAction) _wrapTagAreaControllerActionAware = true;
 
             this.wrapperTag = wrapperTag;
             string beginWrapperTag = string.Empty;
@@ -48,7 +50,8 @@ namespace TwitterBootstrapMVC.Controls
             return new BootstrapActionLink(htmlHelper, linkText, result)
                 .WrapInto("li")
                 .WrapTagControllerAware(_wrapTagControllerAware)
-                .WrapTagControllerAndActionAware(_wrapTagControllerAndActionAware);
+                .WrapTagControllerAndActionAware(_wrapTagControllerAndActionAware)
+                .WrapTagAreaControllerActionAware(_wrapTagAreaControllerActionAware);
         }
 
         public BootstrapActionLink ActionLink(string linkText, Task<ActionResult> taskResult)
@@ -56,7 +59,8 @@ namespace TwitterBootstrapMVC.Controls
             return new BootstrapActionLink(htmlHelper, linkText, taskResult)
                 .WrapInto("li")
                 .WrapTagControllerAware(_wrapTagControllerAware)
-                .WrapTagControllerAndActionAware(_wrapTagControllerAndActionAware);
+                .WrapTagControllerAndActionAware(_wrapTagControllerAndActionAware)
+                .WrapTagAreaControllerActionAware(_wrapTagAreaControllerActionAware);
         }
 
         public BootstrapActionLink ActionLink(string linkText, string actionName)
@@ -64,7 +68,8 @@ namespace TwitterBootstrapMVC.Controls
             return new BootstrapActionLink(htmlHelper, linkText, actionName)
                 .WrapInto("li")
                 .WrapTagControllerAware(_wrapTagControllerAware)
-                .WrapTagControllerAndActionAware(_wrapTagControllerAndActionAware);
+                .WrapTagControllerAndActionAware(_wrapTagControllerAndActionAware)
+                .WrapTagAreaControllerActionAware(_wrapTagAreaControllerActionAware);
         }
 
         public BootstrapActionLink ActionLink(string linkText, string actionName, string controllerName)
@@ -72,7 +77,8 @@ namespace TwitterBootstrapMVC.Controls
             return new BootstrapActionLink(htmlHelper, linkText, actionName, controllerName)
                 .WrapInto("li")
                 .WrapTagControllerAware(_wrapTagControllerAware)
-                .WrapTagControllerAndActionAware(_wrapTagControllerAndActionAware);
+                .WrapTagControllerAndActionAware(_wrapTagControllerAndActionAware)
+                .WrapTagAreaControllerActionAware(_wrapTagAreaControllerActionAware);
         }
 
         public void Divider()

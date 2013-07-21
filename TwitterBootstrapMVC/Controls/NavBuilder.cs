@@ -9,6 +9,7 @@ namespace TwitterBootstrapMVC.Controls
         private readonly UrlHelper urlHelper;
         private bool _wrapTagControllerAware;
         private bool _wrapTagControllerAndActionAware;
+        private bool _wrapTagAreaControllerActionAware;
 
         internal NavBuilder(HtmlHelper<TModel> htmlHelper, Nav nav)
             : base(htmlHelper, nav)
@@ -17,6 +18,7 @@ namespace TwitterBootstrapMVC.Controls
  
             if (nav._activeLinksByController) _wrapTagControllerAware = true;
             if (nav._activeLinksByControllerAndAction) _wrapTagControllerAndActionAware = true;
+            if (nav._activeLinksByAreaControllerAction) _wrapTagAreaControllerActionAware = true;
         }
 
         public BootstrapLink Link(string linkText, string url)
@@ -29,7 +31,8 @@ namespace TwitterBootstrapMVC.Controls
             return new BootstrapActionLink(htmlHelper, linkText, result)
                 .WrapInto("li")
                 .WrapTagControllerAware(_wrapTagControllerAware)
-                .WrapTagControllerAndActionAware(_wrapTagControllerAndActionAware);
+                .WrapTagControllerAndActionAware(_wrapTagControllerAndActionAware)
+                .WrapTagAreaControllerActionAware(_wrapTagAreaControllerActionAware);
         }
 
         public BootstrapActionLink ActionLink(string linkText, Task<ActionResult> taskResult)
@@ -37,7 +40,8 @@ namespace TwitterBootstrapMVC.Controls
             return new BootstrapActionLink(htmlHelper, linkText, taskResult)
                 .WrapInto("li")
                 .WrapTagControllerAware(_wrapTagControllerAware)
-                .WrapTagControllerAndActionAware(_wrapTagControllerAndActionAware);
+                .WrapTagControllerAndActionAware(_wrapTagControllerAndActionAware)
+                .WrapTagAreaControllerActionAware(_wrapTagAreaControllerActionAware);
         }
 
         public BootstrapActionLink ActionLink(string linkText, string actionName)
@@ -45,7 +49,8 @@ namespace TwitterBootstrapMVC.Controls
             return new BootstrapActionLink(htmlHelper, linkText, actionName)
                 .WrapInto("li")
                 .WrapTagControllerAware(_wrapTagControllerAware)
-                .WrapTagControllerAndActionAware(_wrapTagControllerAndActionAware);
+                .WrapTagControllerAndActionAware(_wrapTagControllerAndActionAware)
+                .WrapTagAreaControllerActionAware(_wrapTagAreaControllerActionAware);
         }
 
         public BootstrapActionLink ActionLink(string linkText, string actionName, string controllerName)
@@ -53,7 +58,8 @@ namespace TwitterBootstrapMVC.Controls
             return new BootstrapActionLink(htmlHelper, linkText, actionName, controllerName)
                 .WrapInto("li")
                 .WrapTagControllerAware(_wrapTagControllerAware)
-                .WrapTagControllerAndActionAware(_wrapTagControllerAndActionAware);
+                .WrapTagControllerAndActionAware(_wrapTagControllerAndActionAware)
+                .WrapTagAreaControllerActionAware(_wrapTagAreaControllerActionAware);
         }
 
         public void Divider()

@@ -40,6 +40,7 @@ namespace TwitterBootstrapMVC.Controls
         private string _wrapTag;
         private bool _wrapTagControllerAware;
         private bool _wrapTagControllerAndActionAware;
+        private bool _wrapTagAreaControllerActionAware;
         private string _title;
         private readonly ActionTypePassed _actionTypePassed;
 
@@ -245,6 +246,13 @@ namespace TwitterBootstrapMVC.Controls
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public BootstrapActionLink WrapTagAreaControllerActionAware(bool aware)
+        {
+            this._wrapTagAreaControllerActionAware = aware;
+            return this;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string ToHtmlString()
         {
             var mergedHtmlAttributes = _htmlAttributes;
@@ -283,35 +291,42 @@ namespace TwitterBootstrapMVC.Controls
 
             var requestedController = "";
             var requestedAction = "";
+            var requestedArea = "";
 
             switch (_actionTypePassed)
             {
                 case ActionTypePassed.HtmlRegular:
+                    requestedArea = _routeValues != null && _routeValues.ContainsKey("area") ? _routeValues["area"].ToString() : html.ViewContext.RouteData.DataTokens.ContainsKey("area") ? html.ViewContext.RouteData.DataTokens["area"].ToString() : string.Empty;
                     requestedController = string.IsNullOrEmpty(_controllerName) ? html.ViewContext.RouteData.GetRequiredString("controller") : _controllerName;
                     requestedAction = _actionName;
                     input = html.ActionLink(_linkText, _actionName, _controllerName, _protocol, _hostName, _fragment, _routeValues, mergedHtmlAttributes).ToHtmlString();
                     break;
                 case ActionTypePassed.HtmlActionResult:
+                    requestedArea = _result.GetRouteValueDictionary().ContainsKey("area") ? _result.GetRouteValueDictionary()["area"].ToString() : string.Empty;
                     requestedController = _result.GetRouteValueDictionary()["controller"].ToString();
                     requestedAction = _result.GetRouteValueDictionary()["action"].ToString();
                     input = html.ActionLink(_linkText, _result, mergedHtmlAttributes, _protocol, _hostName, _fragment).ToHtmlString();
                     break;
                 case ActionTypePassed.HtmlTaskResult:
+                    requestedArea = _taskResult.Result.GetRouteValueDictionary().ContainsKey("area") ? _taskResult.Result.GetRouteValueDictionary()["area"].ToString() : string.Empty;
                     requestedController = _taskResult.Result.GetRouteValueDictionary()["controller"].ToString();
                     requestedAction = _taskResult.Result.GetRouteValueDictionary()["action"].ToString();
                     input = html.ActionLink(_linkText, _taskResult, mergedHtmlAttributes, _protocol, _hostName, _fragment).ToHtmlString();
                     break;
                 case ActionTypePassed.AjaxRegular:
-                    requestedController = string.IsNullOrEmpty(_controllerName) ? html.ViewContext.RouteData.GetRequiredString("controller") : _controllerName;
+                    requestedArea = _routeValues != null && _routeValues.ContainsKey("area") ? _routeValues["area"].ToString() : ajax.ViewContext.RouteData.DataTokens.ContainsKey("area") ? ajax.ViewContext.RouteData.DataTokens["area"].ToString() : string.Empty;
+                    requestedController = string.IsNullOrEmpty(_controllerName) ? ajax.ViewContext.RouteData.GetRequiredString("controller") : _controllerName;
                     requestedAction = _actionName;
                     input = ajax.ActionLink(_linkText, _actionName, _controllerName, _protocol, _hostName, _fragment, _routeValues, _ajaxOptions, mergedHtmlAttributes).ToHtmlString();
                     break;
                 case ActionTypePassed.AjaxActionResult:
+                    requestedArea = _result.GetRouteValueDictionary().ContainsKey("area") ? _result.GetRouteValueDictionary()["area"].ToString() : string.Empty;
                     requestedController = _result.GetRouteValueDictionary()["controller"].ToString();
                     requestedAction = _result.GetRouteValueDictionary()["action"].ToString();
                     input = ajax.ActionLink(_linkText, _result, _ajaxOptions, mergedHtmlAttributes).ToHtmlString();
                     break;
                 case ActionTypePassed.AjaxTaskResult:
+                    requestedArea = _taskResult.Result.GetRouteValueDictionary().ContainsKey("area") ? _taskResult.Result.GetRouteValueDictionary()["area"].ToString() : string.Empty;
                     requestedController = _taskResult.Result.GetRouteValueDictionary()["controller"].ToString();
                     requestedAction = _taskResult.Result.GetRouteValueDictionary()["action"].ToString();
                     input = ajax.ActionLink(_linkText, _taskResult, _ajaxOptions, mergedHtmlAttributes).ToHtmlString();
@@ -322,11 +337,31 @@ namespace TwitterBootstrapMVC.Controls
 
             if (!string.IsNullOrEmpty(_wrapTag))
             {
-                var currentAction = html.ViewContext.RouteData.GetRequiredString("action");
-                var currentController = html.ViewContext.RouteData.GetRequiredString("controller");
+                var currentAction = string.Empty;
+                var currentController = string.Empty;
+                var currentArea = string.Empty;
+                switch (_actionTypePassed)
+                {
+                    case ActionTypePassed.HtmlRegular:
+                    case ActionTypePassed.HtmlActionResult:
+                    case ActionTypePassed.HtmlTaskResult:
+                        currentAction = html.ViewContext.RouteData.GetRequiredString("action");
+                        currentController = html.ViewContext.RouteData.GetRequiredString("controller");
+                        currentArea = html.ViewContext.RouteData.DataTokens.ContainsKey("area") ? ajax.ViewContext.RouteData.DataTokens["area"].ToString() : string.Empty;
+                        break;
+                    case ActionTypePassed.AjaxRegular:
+                    case ActionTypePassed.AjaxActionResult:
+                    case ActionTypePassed.AjaxTaskResult:
+                        currentAction = ajax.ViewContext.RouteData.GetRequiredString("action");
+                        currentController = ajax.ViewContext.RouteData.GetRequiredString("controller");
+                        currentArea = ajax.ViewContext.RouteData.DataTokens.ContainsKey("area") ? ajax.ViewContext.RouteData.DataTokens["area"].ToString() : string.Empty;
+                        break;
+                }
+                
                 var classActive = "";
                 if (_wrapTagControllerAware && currentController == requestedController) classActive = @" class=""active""";
                 if (_wrapTagControllerAndActionAware && currentController == requestedController && currentAction == requestedAction) classActive = @" class=""active""";
+                if (_wrapTagAreaControllerActionAware && currentArea == requestedArea && currentController == requestedController && currentAction == requestedAction) classActive = @" class=""active""";
                 input = string.Format("<{0}{1}>{2}</{0}>", _wrapTag, classActive, input);
             }
 
