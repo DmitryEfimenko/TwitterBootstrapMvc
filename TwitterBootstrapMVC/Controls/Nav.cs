@@ -12,9 +12,6 @@ namespace TwitterBootstrapMVC
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool _activeLinksByControllerAndAction;
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool _activeLinksByAreaControllerAction;
-
         public Nav()
             : base("ul")
         {
@@ -38,6 +35,12 @@ namespace TwitterBootstrapMVC
             return this;
         }
 
+        public Nav Id(string id)
+        {
+            MergeHtmlAttribute("id", id);
+            return this;
+        }
+
         public Nav Stacked()
         {
             EnsureClass("nav-stacked");
@@ -53,12 +56,6 @@ namespace TwitterBootstrapMVC
         public Nav SetLinksActiveByControllerAndAction()
         {
             _activeLinksByControllerAndAction = true;
-            return this;
-        }
-
-        public Nav SetLinksActiveByAreaControllerAction()
-        {
-            _activeLinksByAreaControllerAction = true;
             return this;
         }
 

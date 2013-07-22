@@ -87,7 +87,7 @@ namespace TwitterBootstrapMVC.Renderers
                 validationMessage = new BootstrapHelpText(validation, model.validationMessageStyle).ToHtmlString();
             }
 
-            return MvcHtmlString.Create(string.Format(combinedHtml, input, validationMessage, helpText)).ToString();
+            return MvcHtmlString.Create(string.Format(combinedHtml, input, helpText, validationMessage)).ToString();
         }
     }
 }

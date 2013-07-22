@@ -40,7 +40,6 @@ namespace TwitterBootstrapMVC.Controls
         private string _wrapTag;
         private bool _wrapTagControllerAware;
         private bool _wrapTagControllerAndActionAware;
-        private bool _wrapTagAreaControllerActionAware;
         private string _title;
         private readonly ActionTypePassed _actionTypePassed;
 
@@ -246,13 +245,6 @@ namespace TwitterBootstrapMVC.Controls
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public BootstrapActionLink WrapTagAreaControllerActionAware(bool aware)
-        {
-            this._wrapTagAreaControllerActionAware = aware;
-            return this;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string ToHtmlString()
         {
             var mergedHtmlAttributes = _htmlAttributes;
@@ -359,9 +351,8 @@ namespace TwitterBootstrapMVC.Controls
                 }
                 
                 var classActive = "";
-                if (_wrapTagControllerAware && currentController == requestedController) classActive = @" class=""active""";
-                if (_wrapTagControllerAndActionAware && currentController == requestedController && currentAction == requestedAction) classActive = @" class=""active""";
-                if (_wrapTagAreaControllerActionAware && currentArea == requestedArea && currentController == requestedController && currentAction == requestedAction) classActive = @" class=""active""";
+                if (_wrapTagControllerAware && currentArea == requestedArea && currentController == requestedController) classActive = @" class=""active""";
+                if (_wrapTagControllerAndActionAware && currentArea == requestedArea && currentController == requestedController && currentAction == requestedAction) classActive = @" class=""active""";
                 input = string.Format("<{0}{1}>{2}</{0}>", _wrapTag, classActive, input);
             }
 

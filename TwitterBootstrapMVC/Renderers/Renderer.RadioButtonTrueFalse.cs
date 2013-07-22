@@ -73,7 +73,7 @@ namespace TwitterBootstrapMVC.Renderers
             }
 
             inputsContainer.InnerHtml = inputTrue + inputFalse;
-            return inputsContainer.ToString() + validationMessage + helpText;
+            return inputsContainer.ToString() + helpText + validationMessage;
         }
     }
 }
