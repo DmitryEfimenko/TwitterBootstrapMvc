@@ -339,7 +339,7 @@ namespace TwitterBootstrapMVC.Controls
                     case ActionTypePassed.HtmlTaskResult:
                         currentAction = html.ViewContext.RouteData.GetRequiredString("action");
                         currentController = html.ViewContext.RouteData.GetRequiredString("controller");
-                        currentArea = html.ViewContext.RouteData.DataTokens.ContainsKey("area") ? ajax.ViewContext.RouteData.DataTokens["area"].ToString() : string.Empty;
+                        currentArea = html.ViewContext.RouteData.DataTokens.ContainsKey("area") ? html.ViewContext.RouteData.DataTokens["area"].ToString() : string.Empty;
                         break;
                     case ActionTypePassed.AjaxRegular:
                     case ActionTypePassed.AjaxActionResult:
