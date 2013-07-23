@@ -1,4 +1,4 @@
-TwitterBootstrapMvc
+TwitterBootstrapMVC
 ===================
 
 ![TwitterBootstrapMvc](https://github.com/DmitryEfimenko/TwitterBootstrapMvc/blob/master/TwitterBootstrapMVC/TwitterBootstrapMVC.png?raw=true)
