@@ -15,3 +15,13 @@ Visit [TwitterBootstrapMVC.com](https://www.twitterbootstrapmvc.com) to see all 
 
 NuGet package
 package ID: **TwitterBootstrapMVC**
+
+
+*Known Issue:*
+You might get the following error when installing TwitterBootstrapMVC using NuGet:
+```
+error: could not install package 'portable.licensing 1.1.0' you are trying to install this package
+into a project that targets '.netframework, version=v4.0', but the package does not contain any assembly
+references that are compatible with that framework
+```
+In order to fix it, make sure you have latest NuGet since PCL support was added in NuGet 2.5 or 2.5.* 
