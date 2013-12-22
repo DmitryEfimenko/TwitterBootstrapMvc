@@ -25,3 +25,9 @@ into a project that targets '.netframework, version=v4.0', but the package does 
 references that are compatible with that framework
 ```
 In order to fix it, make sure you have latest NuGet since PCL support was added in NuGet 2.5 or 2.5.* 
+
+# Submitting Issues:
+* Include your current code that is relevant to your situation. That probably will be code from controller, model anda a view.
+* Be sure to include html that you are looking for.
+* Provide link to Bootstrap docs if you think that BMVC does not have support for some of Bootstra's functionality
+* Be sure to describe clearly what does not work and what do you expect to get.
