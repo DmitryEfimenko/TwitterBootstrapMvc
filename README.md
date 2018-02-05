@@ -5,9 +5,16 @@ TwitterBootstrapMVC
 
 Fluent implementation of ASP.NET-MVC HTML helpers for Twitter Bootstrap.
 
+# Bootstrap 4 Notice
+
+With the SPAs coming into the world of the web, and the release of MVC6, which suggests use of TagHelpers instead of HtmlHelpers, the adoption for TwitterBootstrapMvc has significantly dropped.
+There is just not enough demand for it anymore to justify spending time for the Bootstrap 4 upgrade, thus support for Bootstrap 4 is not planned anymore.
+
+---
+
 This project aims to help .NET MVC developers to write twitter bootstrap related code faster. If you'd like a jump start, watch [this 6 minutes video](http://www.youtube.com/watch?v=6LpWMl5D2i4) explaining what TwitterBootstrapMVC does.
 
-**!IMPORTANT:** This version does not have all the latest features including support for Twitter Bootstrap 3. I've continued working on this project in a commercial version, the documentation for which you can see at [TwitterBootstrapMVC.com](https://www.twitterbootstrapmvc.com).
+**!IMPORTANT:** This version of the video does not have all the latest features including support for Twitter Bootstrap 3. I've continued working on this project in a commercial version, the documentation for which you can see at [TwitterBootstrapMVC.com](https://www.twitterbootstrapmvc.com).
 However, I'm leaving the code for it here for the benefit of the community.
 
 # Documentation:
